@@ -99,7 +99,7 @@ export function render(root) {
       h('div', { class: 'title-block' }, h('div', { class: 'sub' }, cap(fmtDateLong(now))), h('h1', null, 'Сегодня')),
       h('a', { class: 'icon-btn', href: '#/settings', 'aria-label': 'Настройки' }, icon('settings'))),
     hero, week, stats, ...quick, ...lastBlock,
-    !history.length && !tpls.length ? empty('Добро пожаловать в Тренькинс', 'Записывай подходы, а прогресс и рекорды посчитаются сами.') : null,
+    ...(!history.length && !tpls.length ? [empty('Добро пожаловать в Тренькинс', 'Записывай подходы, а прогресс и рекорды посчитаются сами.')] : []),
   );
 }
 

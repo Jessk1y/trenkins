@@ -1,7 +1,7 @@
 // Сервис-воркер: приложение работает без интернета.
 // Стратегия: stale-while-revalidate для своих файлов — мгновенно из кэша, обновление в фоне.
 // При изменении состава файлов поднимай VERSION.
-const VERSION = 'trenkins-v3';
+const VERSION = 'trenkins-v4';
 const CORE = [
   './', 'index.html', 'manifest.webmanifest', 'css/app.css',
   'css/views/history.css', 'css/views/progress.css', 'css/views/settings.css', 'css/views/templates.css',
