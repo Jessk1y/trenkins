@@ -65,6 +65,18 @@ export function render(root) {
     return seg;
   }
 
+  // ---------- Опыт ----------
+  function experienceBlock() {
+    const opts = [['novice', 'Новичок'], ['returning', 'После перерыва'], ['trained', 'Тренируюсь']];
+    const cur = store.settings().experience || 'novice';
+    const seg = h('div', { class: 'seg', role: 'group', 'aria-label': 'Опыт' },
+      opts.map(([k, l]) => h('button', { class: k === cur ? 'on' : '', 'aria-pressed': String(k === cur), onclick: async () => {
+        await save({ experience: k });
+        seg.querySelectorAll('button').forEach((b, i) => { const on = opts[i][0] === k; b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); });
+      } }, l)));
+    return seg;
+  }
+
   // ---------- Оборудование ----------
   function editBar(bar) {
     const isNew = !bar;
@@ -215,6 +227,12 @@ export function render(root) {
         switchRow('Автозапуск таймера отдыха', 'После отметки подхода', 'autoRest'),
         switchRow('Не гасить экран', 'Во время тренировки', 'keepAwake'),
         switchRow('Подсказки прогрессии', 'Что взять на подходе по прошлым результатам', 'showProgressionHints')),
+
+      section('Опыт'),
+      experienceBlock(),
+      h('div', { class: 'list' },
+        numRow('Лучший жим лёжа на 1 раз', s.benchMax, 'кг', { min: 10, max: 400, digits: 1, placeholder: 'не знаю', onSave: (v) => save({ benchMax: v }) })),
+      h('div', { class: 'muted small', style: { margin: '-6px 4px 0' } }, 'От этого считаются стартовые веса в упражнениях, которые ещё не делал. После перерыва — веса ниже на 20%, а первые 12 тренировок прибавка идёт двойным шагом.'),
 
       section('Профиль'),
       h('div', { class: 'list' },

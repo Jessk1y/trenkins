@@ -37,7 +37,11 @@ export function placeholders(item, workoutId) {
   const hist = store.exerciseHistory(item.exerciseId, { excludeId: workoutId });
   const last = hist[0];
   const targets = item.sets.map((s) => ({ kind: s.kind, ...(s.target || {}) }));
-  const sg = store.settings().showProgressionHints ? suggest(ex, targets, hist) : { weight: null, reps: null, text: null };
+  // после перерыва мышечная память возвращает силу быстрее — первые 12 тренировок шаг прибавки двойной
+  const st = store.settings();
+  const fast = ex && st.experience === 'returning' && store.history().length < 12;
+  const exP = fast ? { ...ex, step: defaultStep(ex) * 2 } : ex;
+  const sg = st.showProgressionHints ? suggest(exP, targets, hist) : { weight: null, reps: null, text: null };
   const lastByKind = { warmup: [], normal: [], drop: [] };
   for (const s of last?.sets || []) (lastByKind[s.kind] || lastByKind.normal).push(s);
   const counters = { warmup: 0, normal: 0, drop: 0 };
@@ -65,14 +69,24 @@ export function placeholders(item, workoutId) {
 export function defaultWeight(ex) {
   if (!ex) return null;
   if (ex.startWeight != null) return ex.startWeight;
+  const st = store.settings();
   const iso = (ex.rest ?? 120) <= 90; // изоляция — легче
   const step = defaultStep(ex);
-  const bars = store.settings().bars || {};
+  const barW = (id) => (st.bars || []).find((b) => b.id === id)?.weight;
+  const minW = ex.equipment === 'barbell' ? (barW(ex.bar || 'olympic') ?? 20) : ex.equipment === 'ez' ? (barW(ex.bar || 'ez') ?? 10) : 0;
+  // Есть максимум в жиме — считаем от него: 1ПМ упражнения ≈ жим × коэффициент,
+  // после перерыва ×0,8, рабочий вес первой тренировки ≈ 65% 1ПМ (подходы по 8–12 с запасом).
+  const detrain = st.experience === 'returning' ? 0.8 : 1;
+  const work = st.benchMax && st.experience !== 'novice' ? st.benchMax * detrain * 0.65 : null;
+  if (work && STRENGTH_RATIO[ex.id] != null) {
+    return Math.max(minW, Math.floor(work * STRENGTH_RATIO[ex.id] / step + 1e-9) * step);
+  }
+  const scale = work ? Math.min(2, Math.max(0.8, work / 30)) : 1; // базовые значения ниже рассчитаны на рабочий жим ~30 кг
   let w = null;
   switch (ex.type === 'assisted' ? 'assisted' : ex.equipment) {
     case 'assisted': w = 30; break;
-    case 'barbell': w = (bars[ex.bar || 'olympic'] ?? 20) + ((ex.rest ?? 0) >= 180 ? 20 : 10); break;
-    case 'ez': w = (bars[ex.bar || 'ez'] ?? 10) + 5; break;
+    case 'barbell': w = (barW(ex.bar || 'olympic') ?? 20) + ((ex.rest ?? 0) >= 180 ? 20 : 10); break;
+    case 'ez': w = (barW(ex.bar || 'ez') ?? 10) + 5; break;
     case 'smith': w = 20; break;
     case 'dumbbell': w = iso ? 5 : 10; break;
     case 'kettlebell': w = 12; break;
@@ -81,8 +95,23 @@ export function defaultWeight(ex) {
     default: return null;
   }
   if (ex.type !== 'weight_reps' && ex.type !== 'assisted') return null;
-  return Math.round(w / step) * step;
+  if (ex.type !== 'assisted') w *= scale;
+  return Math.max(minW, Math.round(w / step) * step);
 }
+
+/** 1ПМ упражнения относительно 1ПМ жима лёжа (гантели — на одну руку). Ориентиры по типичным соотношениям силы. */
+const STRENGTH_RATIO = {
+  'bench-press': 1, 'incline-bench-press': 0.85, 'close-grip-bench': 0.85, 'smith-bench-press': 1, 'machine-chest-press': 0.9,
+  'db-bench-press': 0.38, 'incline-db-press': 0.33, 'db-fly': 0.15, 'cable-crossover': 0.2, 'pec-deck': 0.6,
+  'barbell-squat': 1.2, 'hack-squat': 1.3, 'leg-press': 2.2, 'goblet-squat': 0.3, 'walking-lunge': 0.15,
+  'deadlift': 1.5, 'romanian-deadlift': 1.0, 'hip-thrust': 1.3, 'leg-extension': 0.6, 'leg-curl': 0.5, 'seated-leg-curl': 0.5,
+  'overhead-press': 0.6, 'db-shoulder-press': 0.25, 'lateral-raise': 0.11, 'cable-lateral-raise': 0.08, 'rear-delt-fly': 0.1,
+  'face-pull': 0.35, 'reverse-pec-deck': 0.4, 'upright-row': 0.45,
+  'barbell-row': 0.75, 'db-row': 0.4, 'lat-pulldown': 0.8, 'wide-grip-pulldown': 0.75, 'close-grip-pulldown': 0.8,
+  'seated-cable-row': 0.8, 'machine-row': 0.8,
+  'barbell-curl': 0.45, 'ez-curl': 0.42, 'db-curl': 0.17, 'hammer-curl': 0.19, 'preacher-curl': 0.38, 'cable-curl': 0.4,
+  'triceps-pushdown': 0.45, 'overhead-triceps-extension': 0.25, 'db-kickback': 0.1, 'cable-crunch': 0.6,
+};
 
 export async function startWorkout(template = null) {
   const cur = store.activeWorkout();

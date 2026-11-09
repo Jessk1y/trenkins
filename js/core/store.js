@@ -32,6 +32,8 @@ export const DEFAULT_SETTINGS = {
   ],
   plates: [25, 20, 15, 10, 5, 2.5, 1.25],
   profile: { height: 173, goalWeight: 68 },
+  experience: 'returning',       // 'novice' | 'returning' (после перерыва) | 'trained'
+  benchMax: 70,                  // лучший жим лёжа на 1 раз (кг) — от него считаются стартовые веса
   activeWorkoutId: null,
 };
 
