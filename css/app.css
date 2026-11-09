@@ -95,7 +95,7 @@ input, textarea, select { font-size: 16px; } /* < 16px — iOS зумит при
   flex-direction: column;
   gap: 14px;
 }
-body.has-live .view { padding-bottom: calc(var(--tabbar-h) + var(--safe-bottom) + 84px); }
+body.has-live .view { padding-bottom: calc(var(--tabbar-h) + var(--safe-bottom) + 72px); }
 body.fullscreen .view { padding-bottom: calc(var(--safe-bottom) + 110px); }
 body.fullscreen .tabbar, body.fullscreen #live-bar { display: none; }
 
@@ -123,11 +123,15 @@ body.fullscreen .tabbar, body.fullscreen #live-bar { display: none; }
   bottom: calc(var(--tabbar-h) + var(--safe-bottom) + 8px);
   max-width: 696px; margin: 0 auto;
   background: var(--accent); color: var(--accent-fg);
-  border-radius: var(--r-lg); padding: 10px 14px;
-  display: flex; align-items: center; gap: 10px;
-  box-shadow: var(--shadow); font-weight: 600;
+  border-radius: 999px; padding: 0 6px 0 14px; height: 44px;
+  display: flex; align-items: center; gap: 8px;
+  box-shadow: var(--shadow); font-weight: 600; font-size: 14px; cursor: pointer;
 }
-#live-bar .t { font-variant-numeric: tabular-nums; margin-left: auto; opacity: .9; }
+#live-bar > svg { width: 16px; height: 16px; flex: none; }
+#live-bar .ellipsis { flex: 1; min-width: 0; }
+#live-bar .t { font-variant-numeric: tabular-nums; opacity: .9; flex: none; }
+#live-bar .go { flex: none; display: flex; align-items: center; gap: 2px; padding: 6px 8px 6px 12px; border-radius: 999px; background: color-mix(in srgb, var(--accent-fg) 18%, transparent); font-size: 13px; }
+#live-bar .go svg { width: 14px; height: 14px; }
 
 /* ---------- Заголовки ---------- */
 .topbar { display: flex; align-items: center; gap: 10px; min-height: 44px; }
@@ -224,7 +228,7 @@ body.fullscreen .view { padding-top: 0; }
 .sets th { font-size: 10px; font-weight: 700; color: var(--faint); text-transform: uppercase; letter-spacing: .06em; padding: 0 4px; text-align: center; }
 .sets td { padding: 0 3px; text-align: center; vertical-align: middle; }
 .sets td:first-child { width: 34px; }
-.sets td.prev { color: var(--faint); font-size: 13px; font-variant-numeric: tabular-nums; white-space: nowrap; width: 26%; }
+.sets td.prev { color: var(--faint); font-size: 13px; font-variant-numeric: tabular-nums; white-space: nowrap; width: 18%; }
 .sets td.c { width: 46px; }
 .sets tr > td:first-child { border-radius: 10px 0 0 10px; }
 .sets tr > td:last-child { border-radius: 0 10px 10px 0; }
@@ -244,6 +248,16 @@ body.fullscreen .view { padding-top: 0; }
 }
 .check svg { width: 20px; height: 20px; }
 .sets tr.done .check { background: var(--good); color: #fff; }
+/* Вес: поле с кнопками −/+ */
+.sets td.w { padding: 0 2px; }
+.stepper { display: flex; align-items: center; gap: 3px; }
+.stepper .cell-in { min-width: 0; flex: 1; }
+.step-btn {
+  flex: none; width: 30px; height: 38px; border-radius: 9px; background: var(--surface-2);
+  font-size: 20px; font-weight: 700; line-height: 1; color: var(--muted); touch-action: manipulation;
+}
+.step-btn:active { background: var(--surface-3); color: var(--fg); }
+.sets tr.done .step-btn { visibility: hidden; }
 .ex-actions { display: flex; gap: 6px; padding: 4px 4px 2px; }
 .ex-actions .btn { flex: 1; }
 

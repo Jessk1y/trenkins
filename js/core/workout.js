@@ -1,7 +1,7 @@
 // Логика тренировки: старт из шаблона/пустой, добавление упражнений и подходов, завершение.
 import { store } from './store.js';
 import { uid } from './util.js';
-import { suggest } from './progression.js';
+import { suggest, defaultStep } from './progression.js';
 
 export function newSet(kind = 'normal', target = null, prefill = {}) {
   return { id: uid(), kind, weight: prefill.weight ?? null, reps: prefill.reps ?? null, timeSec: prefill.timeSec ?? null, distance: null, rir: null, done: false, target };
@@ -48,6 +48,7 @@ export function placeholders(item, workoutId) {
     let weight = prev?.weight ?? null;
     let reps = prev?.reps ?? s.target?.repsMin ?? null;
     if (k === 'normal' && sg.weight != null) weight = sg.weight;
+    if (weight == null && !prev) weight = defaultWeight(ex);
     if (k === 'normal' && sg.reps != null) reps = sg.reps;
     // если в этой тренировке уже ввёл вес в предыдущем подходе — предлагаем его же
     if (running[k] != null) weight = running[k];
@@ -55,6 +56,32 @@ export function placeholders(item, workoutId) {
     return { weight, reps, timeSec: prev?.timeSec ?? s.target?.timeSec ?? null, prev };
   });
   return { perSet, hint: sg.text, kind: sg.kind, last };
+}
+
+/**
+ * Стартовый вес для упражнения, которое ещё ни разу не делал: заведомо лёгкий,
+ * дальше подгоняешь кнопками −/+. Можно задать в каталоге полем startWeight.
+ */
+export function defaultWeight(ex) {
+  if (!ex) return null;
+  if (ex.startWeight != null) return ex.startWeight;
+  const iso = (ex.rest ?? 120) <= 90; // изоляция — легче
+  const step = defaultStep(ex);
+  const bars = store.settings().bars || {};
+  let w = null;
+  switch (ex.type === 'assisted' ? 'assisted' : ex.equipment) {
+    case 'assisted': w = 30; break;
+    case 'barbell': w = (bars[ex.bar || 'olympic'] ?? 20) + ((ex.rest ?? 0) >= 180 ? 20 : 10); break;
+    case 'ez': w = (bars[ex.bar || 'ez'] ?? 10) + 5; break;
+    case 'smith': w = 20; break;
+    case 'dumbbell': w = iso ? 5 : 10; break;
+    case 'kettlebell': w = 12; break;
+    case 'machine': w = iso ? 15 : 30; break;
+    case 'cable': w = iso ? 10 : 25; break;
+    default: return null;
+  }
+  if (ex.type !== 'weight_reps' && ex.type !== 'assisted') return null;
+  return Math.round(w / step) * step;
 }
 
 export async function startWorkout(template = null) {

@@ -5,9 +5,11 @@ import { fmtNum, fmtDuration, fmtSec, parseNum, debounce, plural } from '../core
 import { buildItem, newSet, placeholders, finishWorkout, discardWorkout, summarize, templateFromWorkout } from '../core/workout.js';
 import { pickExercise } from '../components/exercise-picker.js';
 import { openPlateCalc } from '../components/plates.js';
+import { defaultStep } from '../core/progression.js';
 import { navigate } from '../router.js';
 
-const KIND_LABEL = { warmup: 'Разминка', normal: 'Рабочий', drop: 'Дроп-сет' };
+const weightInputs = new WeakMap(); // подход → поле веса (для протягивания веса на следующие подходы)
+const KIND_LABEL ={ warmup: 'Разминка', normal: 'Рабочий', drop: 'Дроп-сет' };
 
 export function render(root) {
   let w = store.activeWorkout();
@@ -60,6 +62,14 @@ export function render(root) {
   function card(item, index) {
     const ex = store.exercise(item.exerciseId) || { name: 'Удалённое упражнение', type: 'weight_reps' };
     const ph = placeholders(item, w.id);
+    // вес сразу подставляем в поле (из прошлого раза / прогрессии / стартовый) — дальше −/+
+    let filled = false;
+    item.sets.forEach((s, si) => {
+      const pw = ph.perSet[si]?.weight;
+      if (!s.done && s.weight == null && pw != null) { s.weight = pw; s.autoW = true; filled = true; }
+    });
+    if (filled) save();
+    const step = defaultStep(ex);
     const prevNext = w.items[index + 1];
     const inSuperset = item.superset && (prevNext?.superset === item.superset || w.items[index - 1]?.superset === item.superset);
     const type = ex.type || 'weight_reps';
@@ -68,7 +78,7 @@ export function render(root) {
 
     const table = h('table', { class: 'sets' },
       h('thead', null, h('tr', null, h('th', null, 'Сет'), h('th', null, 'Прошлый'), cols.map((c) => h('th', null, c.label)), h('th', null, ''))),
-      h('tbody', null, item.sets.map((s, si) => setRow(item, s, si, ph.perSet[si], cols, type))));
+      h('tbody', null, item.sets.map((s, si) => setRow(item, s, si, ph.perSet[si], cols, type, step))));
 
     return h('section', { class: 'ex' + (inSuperset ? ' ss' : ''), 'aria-label': ex.name },
       h('div', { class: 'ex-top' },
@@ -87,19 +97,35 @@ export function render(root) {
           : null));
   }
 
-  function setRow(item, s, si, ph, cols, type) {
+  function setRow(item, s, si, ph, cols, type, step) {
     const kindTxt = s.kind === 'warmup' ? 'Р' : s.kind === 'drop' ? 'Д' : String(item.sets.slice(0, si + 1).filter((x) => x.kind === 'normal').length);
     const tr = h('tr', { class: s.done ? 'done' : '' });
     const inputs = cols.map((c) => {
       const k = c.scale || 1;
+      const isW = c.key === 'weight';
       const inp = h('input', {
         class: 'cell-in', inputmode: c.mode, enterkeyhint: 'next', 'aria-label': c.label,
-        value: s[c.key] != null ? fmtNum(s[c.key] / k, 1) : '',
+        value: s[c.key] != null ? fmtNum(s[c.key] / k, isW ? 2 : 1) : '',
         placeholder: ph?.[c.key] != null ? fmtNum(ph[c.key] / k, 1) : (c.key === 'reps' && s.target?.repsMin ? targetStr(s.target) : '—'),
-        oninput: (e) => { const n = parseNum(e.target.value); s[c.key] = n == null ? null : n * k; save(); },
+        oninput: (e) => {
+          const n = parseNum(e.target.value); s[c.key] = n == null ? null : n * k;
+          if (isW) setWeight(item, s, s.weight, false);
+          save();
+        },
         onfocus: (e) => e.target.select(),
       });
-      return h('td', null, inp);
+      if (!isW) return h('td', null, inp);
+      weightInputs.set(s, inp);
+      const bump = (dir) => {
+        const base = s.weight ?? ph?.weight ?? 0;
+        const next = Math.max(0, Math.round((base + dir * step) * 100) / 100);
+        setWeight(item, s, next, true);
+        saveNow();
+      };
+      return h('td', { class: 'w' }, h('div', { class: 'stepper' },
+        h('button', { class: 'step-btn', 'aria-label': `Минус ${fmtNum(step)} кг`, onclick: () => bump(-1) }, '−'),
+        inp,
+        h('button', { class: 'step-btn', 'aria-label': `Плюс ${fmtNum(step)} кг`, onclick: () => bump(1) }, '+')));
     });
     tr.append(
       h('td', null, h('button', { class: 'set-kind' + (s.kind === 'warmup' ? ' w' : s.kind === 'drop' ? ' d' : ''), 'aria-label': 'Тип подхода', onclick: () => setMenu(item, s) }, kindTxt)),
@@ -107,6 +133,18 @@ export function render(root) {
       ...inputs,
       h('td', { class: 'c' }, h('button', { class: 'check', 'aria-label': s.done ? 'Снять отметку' : 'Подход выполнен', 'aria-pressed': String(!!s.done), onclick: () => toggleDone(item, s, ph, cols, tr) }, icon('check'))));
     return tr;
+  }
+
+  /** Ручная правка веса: этот подход становится «своим», а следующие
+   *  неотмеченные подходы того же типа с автоподставленным весом подтягиваются за ним. */
+  function setWeight(item, s, value, updateSelf) {
+    s.weight = value; s.autoW = false;
+    if (updateSelf) { const el = weightInputs.get(s); if (el) el.value = fmtNum(value, 2); }
+    for (const x of item.sets.slice(item.sets.indexOf(s) + 1)) {
+      if (x.done || x.kind !== s.kind || !x.autoW) continue;
+      x.weight = value;
+      const el = weightInputs.get(x); if (el) el.value = value == null ? '' : fmtNum(value, 2);
+    }
   }
 
   // ---------- Действия ----------
@@ -134,7 +172,9 @@ export function render(root) {
 
   function addSet(item) {
     const last = item.sets[item.sets.length - 1];
-    item.sets.push(newSet(last?.kind === 'warmup' ? 'normal' : (last?.kind || 'normal'), last?.target || null, { weight: last?.weight ?? null }));
+    const ns = newSet(last?.kind === 'warmup' ? 'normal' : (last?.kind || 'normal'), last?.target || null, { weight: last?.kind === 'warmup' ? null : (last?.weight ?? null) });
+    if (ns.weight != null) ns.autoW = true;
+    item.sets.push(ns);
     saveNow(); rerenderCard(item);
   }
 

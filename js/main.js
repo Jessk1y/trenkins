@@ -35,7 +35,7 @@ function updateLiveBar() {
   live.hidden = !show;
   document.body.classList.toggle('has-live', show);
   if (!show) return;
-  live.replaceChildren(icon('play'), h('span', { class: 'ellipsis' }, w.name), h('span', { class: 't' }, fmtDuration(Date.now() - w.startedAt)));
+  live.replaceChildren(icon('play'), h('span', { class: 'ellipsis' }, w.name), h('span', { class: 't' }, fmtDuration(Date.now() - w.startedAt)), h('span', { class: 'go' }, 'Вернуться', icon('chev')));
 }
 live.addEventListener('click', () => { location.hash = '#/workout'; });
 live.setAttribute('role', 'button');
