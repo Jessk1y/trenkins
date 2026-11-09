@@ -1,0 +1,37 @@
+/* Экран программ и шаблонов */
+.tp-days .row .go { flex: none; }
+.tp-days .row .link { display: block; color: inherit; text-decoration: none; }
+.tp-days .row .num-badge { width: 30px; height: 30px; border-radius: 9px; background: var(--surface-2); color: var(--muted); display: grid; place-items: center; font-weight: 800; flex: none; }
+.tp-days .row .mv { display: flex; flex: none; }
+.tp-days .row .mv .icon-btn { width: 34px; height: 34px; }
+.tp-days .row .mv .icon-btn svg { width: 18px; height: 18px; }
+.tp-days .row .mv .icon-btn:disabled { opacity: .3; }
+.tp-prog-head { display: flex; align-items: center; gap: 8px; margin: 6px 4px -4px; }
+.tp-prog-head .h2 { margin: 0; flex: 1; }
+.tp-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.tp-actions .btn { flex: 1; min-width: 140px; }
+.tp-card { display: flex; flex-direction: column; gap: 12px; }
+.tp-ex { background: var(--surface); border-radius: var(--r-lg); padding: 12px; display: flex; flex-direction: column; gap: 10px; }
+.tp-ex.ss { box-shadow: inset 3px 0 0 var(--superset); }
+.tp-ex-top { display: flex; align-items: flex-start; gap: 4px; }
+.tp-ex-top .grow { flex: 1; min-width: 0; }
+.tp-ex-top .ex-name { font-size: 17px; line-height: 1.25; }
+.tp-ex-top .icon-btn { width: 36px; height: 36px; }
+.tp-sets { display: flex; flex-direction: column; gap: 6px; }
+.tp-set { display: grid; grid-template-columns: 38px 1fr 38px; gap: 8px; align-items: center; }
+.tp-set .set-kind { width: 38px; height: 40px; background: var(--surface-2); }
+.tp-set .vals { display: flex; align-items: center; gap: 6px; }
+.tp-set .vals .cell-in { height: 40px; flex: 1; min-width: 0; }
+.tp-set .vals .sep { color: var(--faint); font-weight: 700; }
+.tp-set .vals .unit { color: var(--muted); font-size: 13px; flex: none; min-width: 32px; }
+.tp-set .del { width: 38px; height: 40px; border-radius: 10px; color: var(--faint); display: grid; place-items: center; }
+.tp-set .del:hover { color: var(--danger); }
+.tp-set .del svg { width: 18px; height: 18px; }
+.tp-ex-extra { display: grid; grid-template-columns: 110px 1fr; gap: 8px; }
+.tp-ex-extra .input { min-height: 40px; padding: 8px 12px; }
+.tp-ex-foot { display: flex; gap: 8px; }
+.tp-ex-foot .btn { flex: 1; }
+.tp-kindhint { font-size: 12px; color: var(--faint); margin: 0 2px; }
+@media (min-width: 720px) {
+  .tp-set { grid-template-columns: 38px minmax(0, 320px) 38px; }
+}

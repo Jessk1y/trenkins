@@ -1,0 +1,489 @@
+<title>Концепт трекера тренировок</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Oswald:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap">
+<style>
+/* Layout: one reading column for analysis; full-width bands with phone mockups for the three directions */
+:root{
+  --bg:#f6f7f9; --surface:#ffffff; --fg:#16191d; --muted:#5d6570; --line:#dde1e6;
+  --accent:#2f5bd3; --good:#1d8a52; --warn:#b26a00; --bad:#c23b3b;
+  --font-body:"Golos Text",-apple-system,"Segoe UI",Roboto,sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111418; --surface:#1a1e24; --fg:#e8ebef; --muted:#9aa3ad; --line:#2c323a;
+  --accent:#7b9cf0; --good:#4cc283; --warn:#e3a33d; --bad:#ec6b6b; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111418; --surface:#1a1e24; --fg:#e8ebef; --muted:#9aa3ad; --line:#2c323a;
+  --accent:#7b9cf0; --good:#4cc283; --warn:#e3a33d; --bad:#ec6b6b; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:16px;line-height:1.55}
+*{box-sizing:border-box}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:40px 64px;display:flex;flex-direction:column;gap:56px}
+.read{max-width:760px}
+h1{font-size:clamp(28px,5vw,40px);line-height:1.15;margin:0 0 12px;text-wrap:balance;letter-spacing:-.01em}
+h2{font-size:24px;margin:0 0 8px;text-wrap:balance}
+h3{font-size:18px;margin:0 0 6px}
+p{margin:0 0 12px}
+.lead{color:var(--muted);font-size:18px;max-width:680px}
+.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);font-weight:600;margin-bottom:6px}
+.note{color:var(--muted);font-size:14px}
+section{display:flex;flex-direction:column;gap:16px}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:760px;font-size:14px}
+th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+tr:last-child td{border-bottom:0}
+td b{font-weight:600}
+.plus{color:var(--good)} .minus{color:var(--bad)}
+.tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.tier{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+.tier ul{margin:8px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:15px}
+.tier .src{color:var(--muted);font-size:13px}
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:2px 8px;border-radius:99px;border:1px solid currentColor}
+.pill.g{color:var(--good)} .pill.w{color:var(--warn)} .pill.b{color:var(--bad)}
+.variant{display:flex;flex-direction:column;gap:18px;padding-top:8px;border-top:1px solid var(--line)}
+.vhead{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px}
+@media (max-width:760px){.vhead{grid-template-columns:1fr}}
+.vhead ul{margin:0;padding-left:18px;font-size:15px;display:flex;flex-direction:column;gap:4px}
+.phones{display:flex;flex-wrap:wrap;gap:28px;justify-content:flex-start}
+.phone{width:300px;max-width:100%;height:630px;border-radius:44px;padding:10px;background:#0c0d0f;box-shadow:0 1px 0 #2a2d33 inset,0 18px 40px rgba(10,15,25,.18);flex:none}
+.screen{width:100%;height:100%;border-radius:35px;overflow:hidden;position:relative;display:flex;flex-direction:column}
+.cap{font-size:13px;color:var(--muted);margin-top:8px;text-align:center}
+.phonebox{display:flex;flex-direction:column;align-items:center}
+.sb{display:flex;justify-content:space-between;padding:12px 24px 4px;font-size:13px;font-weight:600;font-family:-apple-system,"Segoe UI",sans-serif}
+.num{font-variant-numeric:tabular-nums}
+.backend{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.opt{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:flex;flex-direction:column;gap:8px;font-size:15px}
+.opt.rec{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.opt ul{margin:0;padding-left:18px}
+.ios{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:4px 18px}
+.ios div{display:grid;grid-template-columns:minmax(0,220px) minmax(0,1fr);gap:16px;padding:12px 0;border-bottom:1px solid var(--line);font-size:15px}
+.ios div:last-child{border-bottom:0}
+@media (max-width:560px){.ios div{grid-template-columns:1fr;gap:2px}}
+.ios b{font-weight:600}
+
+/* ---------- Variant A: Журнал ---------- */
+.va{background:#fbfbfa;color:#1b1d21;font-family:-apple-system,"SF Pro Text","Golos Text",sans-serif}
+.va .top{display:flex;align-items:center;justify-content:space-between;padding:6px 16px 10px;border-bottom:1px solid #e6e6e3}
+.va .top .t{font-weight:700;font-size:17px}
+.va .top .clock{font-family:var(--font-mono);font-size:13px;color:#6b6f76}
+.va .fin{background:#1e4fc9;color:#fff;font-size:13px;font-weight:600;padding:6px 11px;border-radius:8px}
+.va .ex{padding:12px 16px 4px}
+.va .ex h4{margin:0;font-size:16px;color:#1e4fc9}
+.va .ex .last{font-size:12px;color:#6b6f76;margin-top:2px}
+.va .ex .memo{font-size:12px;color:#8a6a10;background:#fbf3d9;border-radius:6px;padding:4px 8px;margin-top:6px}
+.va table{min-width:0;font-size:13px;margin:6px 0 0}
+.va th{font-size:10px;color:#8b8f96;padding:4px 6px;border-bottom:1px solid #ecece9;letter-spacing:.05em}
+.va td{padding:7px 6px;border-bottom:1px solid #f0f0ed;font-family:var(--font-mono);font-size:13px}
+.va td.prev{color:#9a9ea5}
+.va td.c{width:28px;text-align:center}
+.va .box{display:inline-block;width:20px;height:20px;border-radius:5px;border:1.5px solid #c7c9ce;vertical-align:middle}
+.va .box.on{background:#1d8a52;border-color:#1d8a52;position:relative}
+.va .box.on::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.va tr.done td{background:#f1f8f3}
+.va tr.cur td{background:#eef2fd}
+.va tr.cur .in{border-bottom:2px solid #1e4fc9}
+.va .w{color:#b26a00;font-weight:600}
+.va .add{font-size:13px;color:#1e4fc9;padding:8px 16px;font-weight:600}
+.va .next{margin:2px 16px;padding:9px 0;border-top:1px solid #ecece9;display:flex;justify-content:space-between;font-size:14px}
+.va .next span:last-child{color:#8b8f96;font-family:var(--font-mono);font-size:12px}
+.va .ss{font-size:10px;font-weight:700;color:#7a3fc4;letter-spacing:.06em}
+.va .rest{margin-top:auto;background:#1b1d21;color:#fff;padding:12px 16px 26px;display:flex;align-items:center;gap:10px}
+.va .rest .tm{font-family:var(--font-mono);font-size:22px;font-weight:600}
+.va .rest .of{font-size:12px;color:#9aa0a8}
+.va .rest .btn{margin-left:auto;display:flex;gap:6px}
+.va .rest .btn span{border:1px solid #444a52;border-radius:7px;padding:4px 8px;font-size:12px;font-family:var(--font-mono)}
+.va .bar{height:3px;background:#33373d}.va .bar i{display:block;height:3px;width:56%;background:#5f8bff}
+.va .tabs{display:flex;gap:4px;margin:10px 16px 0;background:#eeeeeb;border-radius:9px;padding:3px;font-size:13px}
+.va .tabs span{flex:1;text-align:center;padding:5px 0;border-radius:7px;color:#5e626a}
+.va .tabs span.on{background:#fff;color:#1b1d21;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.va .kpis{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:12px 16px 4px}
+.va .kpis div{font-size:11px;color:#6b6f76}
+.va .kpis b{display:block;font-family:var(--font-mono);font-size:17px;color:#1b1d21}
+.va .chart{padding:4px 10px 0}
+.va .hist{padding:4px 16px;font-size:13px}
+.va .hist div{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #f0f0ed}
+.va .hist span:last-child{font-family:var(--font-mono);color:#4b4f56;font-size:12px}
+.va .pr{color:#b26a00;font-weight:700;font-size:10px;margin-left:4px}
+
+/* ---------- Variant B: Табло ---------- */
+.vb{background:#14161a;color:#eef0f2;font-family:"Oswald","Golos Text",sans-serif}
+.vb .sb{color:#eef0f2}
+.vb .top{display:flex;justify-content:space-between;align-items:center;padding:4px 18px 0;font-family:var(--font-body);font-size:13px;color:#8d939c}
+.vb .top b{color:#eef0f2;font-weight:600}
+.vb .exn{padding:14px 18px 0;font-size:26px;font-weight:500;letter-spacing:.01em;line-height:1.1;text-transform:uppercase}
+.vb .sets{display:flex;gap:6px;padding:10px 18px 0}
+.vb .sets i{flex:1;height:6px;border-radius:3px;background:#2b2f36}
+.vb .sets i.d{background:#e9eef3}.vb .sets i.c{background:#f0b429}
+.vb .setl{padding:6px 18px 0;font-family:var(--font-body);font-size:12px;color:#8d939c;display:flex;justify-content:space-between}
+.vb .big{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:18px 18px 0}
+.vb .cell{background:#1d2026;border-radius:16px;padding:10px 10px 12px;text-align:center}
+.vb .cell .l{font-family:var(--font-body);font-size:11px;color:#8d939c;text-transform:uppercase;letter-spacing:.08em}
+.vb .cell .v{font-size:54px;font-weight:600;line-height:1.05}
+.vb .cell .pm{display:flex;justify-content:space-between;margin-top:6px}
+.vb .cell .pm span{width:42px;height:34px;border-radius:10px;background:#2b2f36;display:grid;place-items:center;font-size:20px;font-family:var(--font-body)}
+.vb .plates{margin:16px 18px 0;background:#1d2026;border-radius:14px;padding:12px}
+.vb .plates .l{font-family:var(--font-body);font-size:11px;color:#8d939c;text-transform:uppercase;letter-spacing:.08em;display:flex;justify-content:space-between}
+.vb .bb{display:flex;align-items:center;justify-content:center;height:70px;margin-top:6px}
+.vb .rod{height:8px;background:#7c838d;width:30px}
+.vb .rod.l{width:52px}
+.vb .pl{border-radius:3px;margin:0 1px}
+.vb .prev{padding:12px 18px 0;font-family:var(--font-body);font-size:13px;color:#8d939c}
+.vb .prev b{color:#eef0f2;font-family:"Oswald";font-size:16px;font-weight:500}
+.vb .go{margin:auto 18px 26px;background:#f0b429;color:#16181b;border-radius:18px;text-align:center;padding:16px 0;font-size:20px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.vb .h{padding:10px 18px 0;font-size:28px;text-transform:uppercase;font-weight:500}
+.vb .tiles{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:12px 18px 0}
+.vb .tiles div{background:#1d2026;border-radius:12px;padding:8px 10px;font-family:var(--font-body);font-size:10px;color:#8d939c;text-transform:uppercase;letter-spacing:.06em}
+.vb .tiles b{display:block;font-family:"Oswald";font-size:24px;color:#eef0f2;font-weight:500;letter-spacing:0}
+.vb .sect{padding:16px 18px 6px;font-family:var(--font-body);font-size:11px;color:#8d939c;text-transform:uppercase;letter-spacing:.08em;display:flex;justify-content:space-between}
+.vb .mg{padding:0 18px;display:flex;flex-direction:column;gap:7px;font-family:var(--font-body);font-size:13px}
+.vb .mg div{display:grid;grid-template-columns:62px 1fr 26px;align-items:center;gap:8px}
+.vb .mg i{display:block;height:10px;border-radius:5px;background:#2b2f36;position:relative;overflow:hidden}
+.vb .mg i b{position:absolute;inset:0 auto 0 0;border-radius:5px}
+.vb .mg span:last-child{text-align:right;font-family:"Oswald";font-size:15px}
+.vb .heat{display:grid;grid-template-columns:repeat(13,1fr);gap:4px;padding:0 18px}
+.vb .heat i{aspect-ratio:1;border-radius:3px;background:#22262c}
+.vb .heat i.a{background:#5a4512}.vb .heat i.b{background:#a77a14}.vb .heat i.c{background:#f0b429}
+
+/* ---------- Variant C: Карточки ---------- */
+.vc{background:#eef0f4;color:#14171c;font-family:"Manrope","Golos Text",sans-serif}
+.vc .top{padding:4px 18px 8px;display:flex;justify-content:space-between;align-items:flex-end}
+.vc .top .t{font-size:24px;font-weight:800;letter-spacing:-.02em}
+.vc .top .sub{font-size:12px;color:#6a7280;font-weight:600}
+.vc .chip{font-size:12px;font-weight:700;background:#dfe9ff;color:#2550c9;padding:5px 10px;border-radius:99px}
+.vc .card{background:#fff;margin:0 12px 10px;border-radius:20px;padding:12px 14px;box-shadow:0 1px 2px rgba(20,25,35,.06)}
+.vc .card.mini{display:flex;justify-content:space-between;align-items:center;padding:12px 14px}
+.vc .card .n{font-weight:700;font-size:15px}
+.vc .card .s{font-size:12px;color:#6a7280;font-weight:600}
+.vc .ring{width:32px;height:32px}
+.vc .row{display:grid;grid-template-columns:22px 1fr 1fr 34px;gap:8px;align-items:center;padding:6px 0;font-weight:700;font-size:15px}
+.vc .row .k{font-size:11px;color:#9aa1ac;font-weight:700}
+.vc .row .f{background:#f2f4f8;border-radius:10px;padding:6px 10px;font-variant-numeric:tabular-nums}
+.vc .row .f small{font-size:10px;color:#9aa1ac;font-weight:700;margin-left:3px}
+.vc .row .ok{width:30px;height:30px;border-radius:10px;background:#f2f4f8;display:grid;place-items:center;color:#c2c7d0;font-size:15px}
+.vc .row.d .ok{background:#22a45f;color:#fff}
+.vc .row.d .f{background:#e9f7ef;color:#1b7a47}
+.vc .swipe{font-size:11px;color:#9aa1ac;text-align:center;padding-top:4px;font-weight:600}
+.vc .hint{display:flex;gap:6px;flex-wrap:wrap;padding-top:6px}
+.vc .hint span{font-size:11px;font-weight:700;padding:3px 8px;border-radius:8px;background:#fff4dc;color:#9a6400}
+.vc .float{position:absolute;left:12px;right:12px;bottom:24px;background:#14171c;color:#fff;border-radius:22px;padding:10px 12px;display:flex;align-items:center;gap:10px}
+.vc .float .tm{font-size:22px;font-weight:800;font-variant-numeric:tabular-nums}
+.vc .float .s{font-size:11px;color:#a7afbb;font-weight:600}
+.vc .float .b{margin-left:auto;background:#2a2f37;border-radius:12px;padding:6px 10px;font-size:12px;font-weight:700}
+.vc .hero{margin:4px 12px 10px;border-radius:22px;padding:16px;background:#2550c9;color:#fff}
+.vc .hero .s{color:#c9d6ff;font-size:12px;font-weight:700}
+.vc .hero .n{font-size:22px;font-weight:800;margin:2px 0 4px}
+.vc .hero .ex{font-size:12px;color:#dbe4ff;font-weight:600}
+.vc .hero .start{margin-top:12px;background:#fff;color:#2550c9;border-radius:14px;text-align:center;padding:10px;font-weight:800}
+.vc .week{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin:0 12px 10px;background:#fff;border-radius:18px;padding:10px}
+.vc .week div{text-align:center;font-size:10px;color:#9aa1ac;font-weight:700}
+.vc .week i{display:grid;place-items:center;margin:4px auto 0;width:26px;height:26px;border-radius:9px;font-style:normal;font-size:12px;color:#14171c;background:#f2f4f8}
+.vc .week i.on{background:#22a45f;color:#fff}.vc .week i.t{outline:2px solid #2550c9}
+.vc .two{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 12px}
+.vc .two .card{margin:0}
+.vc .big{font-size:22px;font-weight:800;font-variant-numeric:tabular-nums}
+.vc .up{color:#1b7a47;font-size:11px;font-weight:800}
+.vc .lbl{font-size:11px;font-weight:700;color:#6a7280;padding:6px 18px 6px;text-transform:uppercase;letter-spacing:.06em}
+.vc .tab{position:absolute;left:0;right:0;bottom:0;background:#fff;display:flex;justify-content:space-around;padding:10px 0 22px;font-size:10px;font-weight:700;color:#9aa1ac;border-top:1px solid #e4e7ec}
+.vc .tab span.on{color:#2550c9}
+@media (prefers-reduced-motion:no-preference){.vb .sets i.c{animation:pulse 1.6s ease-in-out infinite}@keyframes pulse{50%{opacity:.45}}}
+</style>
+
+<div class="wrap">
+
+<header class="read">
+  <div class="eyebrow">Черновик концепта · ноябрь 2026</div>
+  <h1>Свой трекер силовых тренировок</h1>
+  <p class="lead">PWA для iPhone без подписок: быстро записывать подходы прямо в зале, видеть прогресс и держать свои программы под рукой. Ниже разбор конкурентов, что из них берём, три направления дизайна и варианты с бэкендом.</p>
+  <p class="note">Все цифры на макетах выдуманы для примера.</p>
+</header>
+
+<section>
+  <div class="read">
+    <h2>Что уже есть на рынке</h2>
+    <p class="note">Цены и лимиты приблизительные, на момент 2026 года у них часто меняются бесплатные квоты.</p>
+  </div>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Приложение</th><th>Чем хорошо</th><th>Чем плохо</th><th>Модель</th></tr></thead>
+      <tbody>
+        <tr><td><b>Strong</b></td><td class="plus">Эталон записи подходов: в строке сразу видно «в прошлый раз», таймер отдыха стартует сам, разминочные подходы, калькулятор блинов</td><td class="minus">Бесплатно только несколько шаблонов, графики и рекорды за подпиской</td><td>Подписка ~$30/год</td></tr>
+        <tr><td><b>Hevy</b></td><td class="plus">Щедрая бесплатная версия, суперсеты, Live Activity на экране блокировки, веб-версия для составления программ на компе</td><td class="minus">Соцлента, которая не нужна для себя; продвинутые графики и лимиты на свои упражнения в Pro</td><td>Freemium</td></tr>
+        <tr><td><b>FitNotes</b></td><td class="plus">Полностью бесплатный, офлайн, очень быстрый ввод, календарь, экспорт CSV</td><td class="minus">Только Android, старый интерфейс, нет синхронизации</td><td>Бесплатно</td></tr>
+        <tr><td><b>Boostcamp</b></td><td class="plus">Готовые программы (5/3/1, GZCLP, PPL) с весами в процентах от 1ПМ и автопрогрессией по неделям</td><td class="minus">Ввод подходов менее удобный, часть программ платные</td><td>Freemium</td></tr>
+        <tr><td><b>Liftosaur</b></td><td class="plus">Правила прогрессии задаются гибко («все подходы на 12 повторов → +2,5 кг»), есть веб и PWA</td><td class="minus">Высокий порог входа, интерфейс для гиков</td><td>Freemium</td></tr>
+        <tr><td><b>Alpha Progression / RP</b></td><td class="plus">Подсказывает вес и повторы на сегодня, RIR/RPE, мезоциклы, советует добавить или убрать подходы</td><td class="minus">Дорого, мало ручного контроля</td><td>Подписка</td></tr>
+        <tr><td><b>Fitbod</b></td><td class="plus">Карта восстановления мышц, генерация тренировки под оборудование</td><td class="minus">Самый дорогой, тренировки «из коробки» плохо подходят под свою программу</td><td>~$80/год</td></tr>
+        <tr><td><b>JEFIT</b></td><td class="plus">Огромная база упражнений с анимациями</td><td class="minus">Перегружен, реклама, медленный</td><td>Freemium + реклама</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="read">
+    <h2>Что берём</h2>
+    <p>Ядро делаем лучше Strong по скорости ввода. Умную прогрессию берём у Boostcamp и Liftosaur, но в простом виде. Соцсеть и AI-генерацию тренировок не делаем.</p>
+  </div>
+  <div class="tiers">
+    <div class="tier">
+      <span class="pill g">Первая версия</span>
+      <ul>
+        <li>Шаблоны тренировок и программы (дни А/Б/В) <span class="src">· Strong</span></li>
+        <li>Активная тренировка: «в прошлый раз» в каждой строке, автоподстановка весов <span class="src">· Strong</span></li>
+        <li>Таймер отдыха стартует сам после отметки подхода, своё время на каждое упражнение</li>
+        <li>Разминочные, рабочие и дроп-сеты, суперсеты <span class="src">· Hevy</span></li>
+        <li>Заметка к упражнению («сиденье на 4») видна каждый раз</li>
+        <li>Черновик тренировки не теряется при закрытии приложения</li>
+        <li>История по упражнению, рекорды, график расчётного 1ПМ и объёма</li>
+        <li>Полный офлайн, экспорт и импорт в файл <span class="src">· FitNotes</span></li>
+      </ul>
+    </div>
+    <div class="tier">
+      <span class="pill w">Вторая очередь</span>
+      <ul>
+        <li>Подсказка прогрессии: «в прошлый раз все подходы по 12 → сегодня +2,5 кг» <span class="src">· Liftosaur, Alpha</span></li>
+        <li>Калькулятор блинов на штангу <span class="src">· Strong</span></li>
+        <li>Веса в % от 1ПМ для программ типа 5/3/1 <span class="src">· Boostcamp</span></li>
+        <li>RPE / RIR у подхода</li>
+        <li>Недельный объём по группам мышц <span class="src">· Fitbod, RP</span></li>
+        <li>Вес тела и замеры, фото прогресса</li>
+        <li>Импорт истории из Strong или Hevy (CSV)</li>
+        <li>Синхронизация с компьютером и редактор программ на большом экране <span class="src">· Hevy web</span></li>
+      </ul>
+    </div>
+    <div class="tier">
+      <span class="pill b">Не делаем</span>
+      <ul>
+        <li>Соцлента, подписчики, лайки</li>
+        <li>AI-генерация тренировок</li>
+        <li>Свои видео и анимации упражнений (хватит ссылки)</li>
+        <li>Apple Watch и Live Activity: PWA этого не умеет</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="read">
+    <h2>Три направления дизайна</h2>
+    <p>У каждого по два экрана: экран во время тренировки и экран прогресса. Любое из них получит светлую и тёмную тему, здесь показана основная.</p>
+  </div>
+
+  <!-- Variant A -->
+  <div class="variant">
+    <div class="vhead">
+      <div>
+        <div class="eyebrow">Вариант A</div>
+        <h3>Журнал</h3>
+        <p>Плотная таблица, как в бумажном дневнике. Все упражнения тренировки на одном экране, видно что было в прошлый раз. Ближе всего к Strong, только чище.</p>
+      </div>
+      <ul>
+        <li><b>Плюс:</b> максимум информации, быстро прыгать между упражнениями, удобно для суперсетов</li>
+        <li><b>Минус:</b> мелкие цели для пальцев, нужна аккуратность</li>
+        <li><b>Подходит</b>, если тренировки длинные и упражнений много</li>
+      </ul>
+    </div>
+    <div class="phones">
+      <div class="phonebox"><div class="phone"><div class="screen va">
+        <div class="sb"><span>18:42</span><span>●●● 5G</span></div>
+        <div class="top"><div><div class="t">Верх А</div><div class="clock num">38:12 · 9 подходов</div></div><span class="fin">Завершить</span></div>
+        <div class="ex">
+          <h4>Жим штанги лёжа</h4>
+          <div class="last">4 нояб: 80 × 8, 8, 7</div>
+          <div class="memo">Хват на кольцах, лопатки сведены</div>
+        </div>
+        <div style="padding:0 10px">
+        <table>
+          <thead><tr><th>Сет</th><th>Прошлый</th><th>кг</th><th>Повт</th><th class="c">✓</th></tr></thead>
+          <tbody>
+            <tr class="done"><td class="w">Р</td><td class="prev">40×10</td><td>40</td><td>10</td><td class="c"><span class="box on"></span></td></tr>
+            <tr class="done"><td>1</td><td class="prev">80×8</td><td>82.5</td><td>8</td><td class="c"><span class="box on"></span></td></tr>
+            <tr class="done"><td>2</td><td class="prev">80×8</td><td>82.5</td><td>7</td><td class="c"><span class="box on"></span></td></tr>
+            <tr class="cur"><td>3</td><td class="prev">80×7</td><td><span class="in">82.5</span></td><td><span class="in">&nbsp;7&nbsp;</span></td><td class="c"><span class="box"></span></td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="add">+ Подход</div>
+        <div class="next"><span>Тяга гантели в наклоне</span><span>0/3</span></div>
+        <div class="next"><span><span class="ss">СУПЕРСЕТ</span><br>Разводка + брусья</span><span>0/3</span></div>
+        <div class="rest-wrap" style="margin-top:auto"><div class="bar"><i></i></div>
+        <div class="rest" style="margin-top:0"><div><div class="tm num">1:24</div><div class="of">отдых из 2:30</div></div><div class="btn"><span>−15</span><span>+15</span><span>Пропуск</span></div></div></div>
+      </div></div><div class="cap">Активная тренировка</div></div>
+
+      <div class="phonebox"><div class="phone"><div class="screen va">
+        <div class="sb"><span>18:42</span><span>●●● 5G</span></div>
+        <div class="top"><div class="t">‹ Жим штанги лёжа</div></div>
+        <div class="tabs"><span>История</span><span class="on">График</span><span>Рекорды</span></div>
+        <div class="kpis"><div>1ПМ расч.<b>103</b></div><div>Лучший сет<b>85×6</b></div><div>За 10 нед<b class="num" style="color:#1d8a52">+11</b></div></div>
+        <div class="chart">
+          <svg viewBox="0 0 270 120" width="100%" role="img" aria-label="Расчётный 1ПМ за 10 недель, с 92 до 103 кг">
+            <g stroke="#ecece9" stroke-width="1"><line x1="10" y1="22" x2="262" y2="22"/><line x1="10" y1="58" x2="262" y2="58"/><line x1="10" y1="94" x2="262" y2="94"/></g>
+            <g font-family="JetBrains Mono,monospace" font-size="8" fill="#9a9ea5"><text x="262" y="19" text-anchor="end">103</text><text x="262" y="55" text-anchor="end">97</text><text x="262" y="91" text-anchor="end">91</text></g>
+            <polyline fill="none" stroke="#1e4fc9" stroke-width="2" stroke-linejoin="round" points="14,88 40,79 66,70 92,76 118,58 144,49 170,40 196,46 222,28 248,22"/>
+            <g fill="#1e4fc9"><circle cx="14" cy="88" r="2.5"/><circle cx="40" cy="79" r="2.5"/><circle cx="66" cy="70" r="2.5"/><circle cx="92" cy="76" r="2.5"/><circle cx="118" cy="58" r="2.5"/><circle cx="144" cy="49" r="2.5"/><circle cx="170" cy="40" r="2.5"/><circle cx="196" cy="46" r="2.5"/><circle cx="222" cy="28" r="2.5"/></g>
+            <circle cx="248" cy="22" r="4.5" fill="#fbfbfa" stroke="#1e4fc9" stroke-width="2"/>
+            <g font-family="JetBrains Mono,monospace" font-size="8" fill="#9a9ea5"><text x="14" y="112">1 сен</text><text x="230" y="112">4 нояб</text></g>
+          </svg>
+        </div>
+        <div class="hist">
+          <div><span>4 нояб<span class="pr">ПР</span></span><span>80×8 · 80×8 · 80×7</span></div>
+          <div><span>31 окт</span><span>77.5×8 · 77.5×8 · 77.5×8</span></div>
+          <div><span>28 окт</span><span>77.5×8 · 77.5×7 · 77.5×6</span></div>
+          <div><span>24 окт</span><span>75×8 · 75×8 · 75×8</span></div>
+        </div>
+      </div></div><div class="cap">Прогресс по упражнению</div></div>
+    </div>
+  </div>
+
+  <!-- Variant B -->
+  <div class="variant">
+    <div class="vhead">
+      <div>
+        <div class="eyebrow">Вариант B</div>
+        <h3>Табло</h3>
+        <p>Один подход на весь экран. Огромные цифры, кнопки под потные пальцы, раскладка блинов в цветах олимпийских дисков. Телефон можно положить на скамью и читать издалека.</p>
+      </div>
+      <ul>
+        <li><b>Плюс:</b> невозможно промахнуться, читается с вытянутой руки, отвлекает меньше всего</li>
+        <li><b>Минус:</b> чтобы увидеть всю тренировку, нужен лишний свайп или список</li>
+        <li><b>Подходит</b>, если важнее фокус, чем обзор</li>
+      </ul>
+    </div>
+    <div class="phones">
+      <div class="phonebox"><div class="phone"><div class="screen vb">
+        <div class="sb"><span>18:42</span><span>●●● 5G</span></div>
+        <div class="top"><span>Верх А · <b class="num">38:12</b></span><span>2 из 5 упр.</span></div>
+        <div class="exn">Жим штанги<br>лёжа</div>
+        <div class="sets"><i class="d"></i><i class="d"></i><i class="c"></i><i></i></div>
+        <div class="setl"><span>Подход 3 из 4</span><span>отдых 2:30</span></div>
+        <div class="big">
+          <div class="cell"><div class="l">кг</div><div class="v num">82.5</div><div class="pm"><span>−</span><span>+</span></div></div>
+          <div class="cell"><div class="l">повторы</div><div class="v num">8</div><div class="pm"><span>−</span><span>+</span></div></div>
+        </div>
+        <div class="plates">
+          <div class="l"><span>На каждую сторону</span><span style="color:#eef0f2">25 + 5 + 1.25</span></div>
+          <div class="bb">
+            <span class="rod l"></span>
+            <span class="pl" style="width:12px;height:66px;background:#d33a3a"></span>
+            <span class="pl" style="width:7px;height:36px;background:#e9eef3"></span>
+            <span class="pl" style="width:5px;height:24px;background:#8d939c"></span>
+            <span class="rod"></span>
+          </div>
+        </div>
+        <div class="prev">В прошлый раз: <b>80 × 7</b> · цель сегодня <b>82.5 × 8</b></div>
+        <div class="go">Подход сделан</div>
+      </div></div><div class="cap">Активный подход</div></div>
+
+      <div class="phonebox"><div class="phone"><div class="screen vb">
+        <div class="sb"><span>18:42</span><span>●●● 5G</span></div>
+        <div class="h">Неделя 45</div>
+        <div class="tiles"><div>Трен.<b class="num">3/4</b></div><div>Тоннаж<b class="num">21.4т</b></div><div>Рекорды<b class="num" style="color:#f0b429">2</b></div></div>
+        <div class="sect"><span>Рабочие подходы по мышцам</span><span>цель 10–20</span></div>
+        <div class="mg">
+          <div><span>Грудь</span><i><b style="width:70%;background:#e9eef3"></b></i><span>14</span></div>
+          <div><span>Спина</span><i><b style="width:80%;background:#e9eef3"></b></i><span>16</span></div>
+          <div><span>Ноги</span><i><b style="width:60%;background:#e9eef3"></b></i><span>12</span></div>
+          <div><span>Плечи</span><i><b style="width:45%;background:#f0b429"></b></i><span>9</span></div>
+          <div><span>Руки</span><i><b style="width:50%;background:#e9eef3"></b></i><span>10</span></div>
+          <div><span>Пресс</span><i><b style="width:30%;background:#f0b429"></b></i><span>6</span></div>
+        </div>
+        <div class="sect"><span>Последние 13 недель</span><span>4 трен/нед</span></div>
+        <div class="heat">
+          <i class="b"></i><i class="c"></i><i class="b"></i><i class="a"></i><i class="c"></i><i class="c"></i><i class="b"></i><i></i><i class="b"></i><i class="c"></i><i class="c"></i><i class="b"></i><i class="c"></i>
+          <i class="c"></i><i class="b"></i><i class="c"></i><i class="b"></i><i class="c"></i><i class="b"></i><i class="c"></i><i class="a"></i><i class="c"></i><i class="c"></i><i class="b"></i><i class="c"></i><i class="b"></i>
+        </div>
+      </div></div><div class="cap">Обзор недели</div></div>
+    </div>
+  </div>
+
+  <!-- Variant C -->
+  <div class="variant">
+    <div class="vhead">
+      <div>
+        <div class="eyebrow">Вариант C</div>
+        <h3>Карточки</h3>
+        <p>Выглядит как родное приложение iOS: карточки упражнений, отметка подхода свайпом, плавающий таймер отдыха поверх всего. Главный экран с кнопкой «Начать» и календарём недели.</p>
+      </div>
+      <ul>
+        <li><b>Плюс:</b> привычно для iPhone, приятно пользоваться каждый день, легко расширять</li>
+        <li><b>Минус:</b> карточки занимают больше места, чем таблица</li>
+        <li><b>Подходит</b> как баланс между A и B</li>
+      </ul>
+    </div>
+    <div class="phones">
+      <div class="phonebox"><div class="phone"><div class="screen vc">
+        <div class="sb"><span>18:42</span><span>●●● 5G</span></div>
+        <div class="top"><div><div class="sub num">38:12 · Верх А</div><div class="t">Тренировка</div></div><span class="chip">Готово</span></div>
+        <div class="card mini"><div><div class="n">Жим гантелей на наклонной</div><div class="s">3/3 · 30 × 10</div></div>
+          <svg class="ring" viewBox="0 0 36 36"><circle cx="18" cy="18" r="15" fill="none" stroke="#e9f7ef" stroke-width="4"/><circle cx="18" cy="18" r="15" fill="none" stroke="#22a45f" stroke-width="4" stroke-dasharray="94.2 94.2" transform="rotate(-90 18 18)"/></svg></div>
+        <div class="card">
+          <div class="n">Жим штанги лёжа</div>
+          <div class="s">прошлый раз 80 × 8, 8, 7</div>
+          <div class="hint"><span>↑ попробуй 82.5 кг</span></div>
+          <div class="row d"><span class="k">1</span><span class="f num">82.5<small>кг</small></span><span class="f num">8<small>повт</small></span><span class="ok">✓</span></div>
+          <div class="row d"><span class="k">2</span><span class="f num">82.5<small>кг</small></span><span class="f num">7<small>повт</small></span><span class="ok">✓</span></div>
+          <div class="row"><span class="k">3</span><span class="f num">82.5<small>кг</small></span><span class="f num">7<small>повт</small></span><span class="ok">✓</span></div>
+          <div class="swipe">смахни вправо, чтобы отметить подход</div>
+        </div>
+        <div class="card mini"><div><div class="n">Тяга гантели в наклоне</div><div class="s">0/3 · прошлый 32 × 10</div></div>
+          <svg class="ring" viewBox="0 0 36 36"><circle cx="18" cy="18" r="15" fill="none" stroke="#eef0f4" stroke-width="4"/></svg></div>
+        <div class="float"><svg width="40" height="40" viewBox="0 0 36 36"><circle cx="18" cy="18" r="15" fill="none" stroke="#2a2f37" stroke-width="4"/><circle cx="18" cy="18" r="15" fill="none" stroke="#5f8bff" stroke-width="4" stroke-dasharray="52.7 94.2" stroke-linecap="round" transform="rotate(-90 18 18)"/></svg><div><div class="tm">1:24</div><div class="s">отдых · затем подход 3</div></div><span class="b">+15 с</span></div>
+      </div></div><div class="cap">Активная тренировка</div></div>
+
+      <div class="phonebox"><div class="phone"><div class="screen vc">
+        <div class="sb"><span>08:15</span><span>●●● 5G</span></div>
+        <div class="top"><div><div class="sub">Пн, 9 ноября</div><div class="t">Сегодня</div></div></div>
+        <div class="hero"><div class="s">Программа «Верх/Низ» · неделя 6</div><div class="n">Низ Б</div><div class="ex">Присед · Румынская тяга · Выпады · Икры</div><div class="start">Начать тренировку</div></div>
+        <div class="week">
+          <div>Пн<i class="t">9</i></div><div>Вт<i>10</i></div><div>Ср<i>11</i></div><div>Чт<i>12</i></div><div>Пт<i>13</i></div><div>Сб<i>14</i></div><div>Вс<i>15</i></div>
+        </div>
+        <div class="lbl">Последние рекорды</div>
+        <div class="two">
+          <div class="card"><div class="s">Присед, 1ПМ</div><div class="big">128 кг</div><div class="up">+5 за месяц</div></div>
+          <div class="card"><div class="s">Подтягивания</div><div class="big">+10 × 8</div><div class="up">новый ПР</div></div>
+        </div>
+        <div class="tab"><span class="on">Сегодня</span><span>Программы</span><span>История</span><span>Прогресс</span></div>
+      </div></div><div class="cap">Главный экран</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="read" style="max-width:none">
+  <div class="read">
+    <h2>Бэкенд: нужен или нет</h2>
+    <p>Главное правило: в зале интернет может пропасть, поэтому приложение всегда работает с данными на телефоне. Сервер, если он есть, только синхронизирует их в фоне.</p>
+  </div>
+  <div class="backend">
+    <div class="opt">
+      <h3>1. Только телефон</h3>
+      <ul><li>Данные в IndexedDB на iPhone</li><li>Бэкап и перенос на комп файлом</li><li>Хостинг бесплатный: GitHub Pages</li></ul>
+      <p class="note">Проще всего, но если удалить PWA с экрана «Домой», данные пропадут вместе с ним. Бэкап только ручной.</p>
+    </div>
+    <div class="opt rec">
+      <h3>2. Сначала локально, синк позже <span class="pill g">советую</span></h3>
+      <ul><li>Первая версия как вариант 1</li><li>Модель данных сразу готова к синку: id и время изменения у каждой записи</li><li>Синк добавляем вторым этапом, можно на том же стеке, что сайт рецептов (Express, Prisma, Postgres на Render)</li></ul>
+      <p class="note">Быстро получаешь рабочее приложение, а автобэкап, комп и уведомления таймера появятся без переделки.</p>
+    </div>
+    <div class="opt">
+      <h3>3. Сервер с первого дня</h3>
+      <ul><li>Вход, синк и бэкап сразу</li><li>Можно сразу пушить уведомление об окончании отдыха</li></ul>
+      <p class="note">Дольше до первой тренировки с приложением. Бесплатный Render засыпает, первый запрос ждёт до минуты, но фоновому синку это не мешает.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="read">
+    <h2>Что важно знать про PWA на iPhone</h2>
+  </div>
+  <div class="ios read" style="max-width:none">
+    <div><b>Таймер отдыха при заблокированном экране</b><span>Свёрнутая PWA не выполняет код. Уведомление «отдых закончился» можно прислать только с сервера через Web Push (работает с iOS 16.4 у сайта, добавленного на экран «Домой»). Без сервера таймер досчитывает правильно, когда вернёшься в приложение.</span></div>
+    <div><b>Вибрация</b><span>Safari её не поддерживает. Остаётся звук и уведомление.</span></div>
+    <div><b>Экран не гаснет</b><span>Wake Lock API держит экран включённым во время тренировки, на свежих iOS работает и в установленной PWA.</span></div>
+    <div><b>Хранение данных</b><span>Для PWA на экране «Домой» правило «удалить данные через 7 дней без захода» не действует, но при удалении иконки данные стираются. Нужен бэкап: файл или сервер.</span></div>
+    <div><b>Apple Watch, Live Activity, виджеты</b><span>Недоступны для PWA. Это единственное, в чём нативные Strong и Hevy будут сильнее.</span></div>
+  </div>
+</section>
+
+</div>

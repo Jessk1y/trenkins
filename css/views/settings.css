@@ -1,0 +1,35 @@
+/* Экран «Настройки» */
+.st-note { font-size: 13px; color: var(--muted); margin: -2px 4px 0; line-height: 1.4; }
+.st-banner { background: var(--warn-soft); color: var(--warn); border-radius: var(--r); padding: 10px 14px; font-size: 14px; font-weight: 600; }
+.st-banner.ok { background: var(--good-soft); color: var(--good); }
+
+.list > .row.st-field { cursor: default; }
+.st-input { width: 92px; flex: none; text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }
+.st-unit { color: var(--muted); font-size: 14px; width: 26px; flex: none; }
+.row.st-btn { width: 100%; text-align: left; font-size: 16px; background: none; border-radius: 0; }
+.row.st-btn svg { width: 22px; height: 22px; color: var(--muted); flex: none; }
+.row.st-btn.danger, .row.st-btn.danger svg { color: var(--danger); }
+.row.st-btn.danger { font-weight: 600; }
+
+/* iOS-подобный переключатель */
+.switch {
+  position: relative; flex: none; width: 51px; height: 31px; border-radius: 99px;
+  background: var(--surface-3); transition: background .2s ease;
+}
+.switch::after {
+  content: ''; position: absolute; top: 2px; left: 2px; width: 27px; height: 27px; border-radius: 50%;
+  background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,.3); transition: transform .2s ease;
+}
+.switch[aria-checked="true"] { background: var(--good); }
+.switch[aria-checked="true"]::after { transform: translateX(20px); }
+
+.st-plates { display: flex; flex-wrap: wrap; gap: 8px; padding: 12px 14px; }
+.st-plate {
+  display: inline-flex; align-items: center; gap: 6px; min-height: 38px; padding: 0 8px 0 14px; border-radius: 99px;
+  background: var(--surface-2); font-weight: 700; font-variant-numeric: tabular-nums;
+}
+.st-plate svg { width: 16px; height: 16px; color: var(--faint); }
+.st-plate:active { background: var(--surface-3); }
+
+.st-version { text-align: center; color: var(--faint); font-size: 13px; padding: 4px 0 0; }
+.st-two { display: grid; grid-template-columns: 1fr 110px; gap: 10px; }
