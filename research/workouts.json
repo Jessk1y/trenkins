@@ -1,0 +1,3063 @@
+{
+  "version": 1,
+  "generatedFrom": "research/workouts.md",
+  "programs": [
+    {
+      "id": "fullbody",
+      "name": "Фулбади (всё тело)",
+      "kind": "fullbody",
+      "note": "Три опубликованные тренировки на всё тело с разным акцентом: гипертрофия (протокол исследования), сила + объём (Wendler), чистая сила для новичка (Rippetoe). Делай 3 раза в неделю через день.",
+      "templates": [
+        {
+          "id": "fb-schoenfeld-2019",
+          "name": "Фулбади — протокол Schoenfeld 2019",
+          "note": "Ровно 7 упражнений из рецензируемого исследования, группа 3 подхода (умеренный объём). Отдых 90 с между подходами, ~2 мин между упражнениями. ~60–70 мин.",
+          "source": {
+            "author": "Schoenfeld BJ, Contreras B, Krieger J и др.",
+            "title": "Resistance Training Volume Enhances Muscle Hypertrophy but Not Strength in Trained Men. Med Sci Sports Exerc. 2019;51(1):94–103",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6303131/",
+            "credibility": "Рецензируемое РКИ (PMID 30153194), ведущий исследователь гипертрофии; протокол 3×/нед, 8–12 повторов.",
+            "adapted": "Взята группа 3 подхода (не 5) — под новичка и дефицит. В исследовании подходы до отказа; здесь — с запасом 1–2 повтора (Refalo 2023: близость к отказу важнее самого отказа). Добавлены разминочные подходы."
+          },
+          "items": [
+            {
+              "exerciseId": "barbell-squat",
+              "rest": 90,
+              "superset": null,
+              "note": "Приседания со штангой. Отдых 90 с — как в исследовании.",
+              "sets": [
+                {
+                  "kind": "warmup",
+                  "repsMin": 10,
+                  "repsMax": 10
+                },
+                {
+                  "kind": "warmup",
+                  "repsMin": 5,
+                  "repsMax": 5
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 12,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 12,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 12,
+                  "rir": 2
+                }
+              ]
+            },
+            {
+              "exerciseId": "bench-press",
+              "rest": 90,
+              "superset": null,
+              "note": "Жим лёжа. Работай в раме с ограничителями или со страховкой.",
+              "sets": [
+                {
+                  "kind": "warmup",
+                  "repsMin": 10,
+                  "repsMax": 10
+                },
+                {
+                  "kind": "warmup",
+                  "repsMin": 5,
+                  "repsMax": 5
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 12,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 12,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 12,
+                  "rir": 2
+                }
+              ]
+            },
+            {
+              "exerciseId": "wide-grip-pulldown",
+              "rest": 90,
+              "superset": null,
+              "note": "Тяга верхнего блока широким хватом.",
+              "sets": [
+                {
+                  "kind": "warmup",
+                  "repsMin": 10,
+                  "repsMax": 10
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 12,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 12,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 12,
+                  "rir": 2
+                }
+              ]
+            },
+            {
+              "exerciseId": "overhead-press",
+              "rest": 90,
+              "superset": null,
+              "note": "Армейский жим штанги (barbell military press).",
+              "sets": [
+                {
+                  "kind": "warmup",
+                  "repsMin": 8,
+                  "repsMax": 8
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 12,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 12,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 12,
+                  "rir": 2
+                }
+              ]
+            },
+            {
+              "exerciseId": "seated-cable-row",
+              "rest": 90,
+              "superset": null,
+              "note": "Тяга нижнего блока сидя.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 12,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 12,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 12,
+                  "rir": 2
+                }
+              ]
+            },
+            {
+              "exerciseId": "leg-press",
+              "rest": 90,
+              "superset": null,
+              "note": "Жим ногами в тренажёре.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 12,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 12,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 12,
+                  "rir": 2
+                }
+              ]
+            },
+            {
+              "exerciseId": "leg-extension",
+              "rest": 90,
+              "superset": null,
+              "note": "В исследовании — разгибание одной ногой (unilateral). Делай каждую ногу по очереди; повторы — на одну ногу.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 12,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 12,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 12,
+                  "rir": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "fb-wendler-531b",
+          "name": "Фулбади — Wendler 5/3/1 для начинающих (день 1)",
+          "note": "Пн из шаблона «5/3/1 for Beginners»: присед и жим лёжа по схеме 5/3/1 + 5×5 FSL, затем вспомогательные: толкающее, тянущее, одна нога/кор — по 50–100 повторов суммарно. Вес считается от тренировочного максимума (ТМ ≈ 90% от 1ПМ). Неделя 1: 65/75/85% ТМ ×5/5/5+, неделя 2: 70/80/90% ×3/3/3+, неделя 3: 75/85/95% ×5/3/1+; FSL — 5×5 весом первого подхода. Ср: становая + жим стоя; Пт: снова жим лёжа + присед.",
+          "source": {
+            "author": "Jim Wendler",
+            "title": "The 5/3/1 Philosophy for Beginners (jimwendler.com)",
+            "url": "https://www.jimwendler.com/blogs/jimwendler-com/5-3-1-for-beginners",
+            "also": {
+              "author": "Jim Wendler",
+              "title": "5/3/1 2nd Edition (проценты недель)",
+              "url": "https://jimwendler.com/products/5-3-1-for-powerlifting-ebook-version"
+            },
+            "credibility": "Официальная страница автора метода; Wendler — пауэрлифтер (элитный уровень), 5/3/1 — одна из самых распространённых программ в мире.",
+            "adapted": "Отдых в источнике не указан — поставлен по Schoenfeld 2016 (3 мин для основных). Подтягивания → гравитрон (новичок пока не подтянется 10 раз — стандарт из самой статьи). Для «одна нога/кор» выбран пресс (приоритет пользователя). Agile 8 и прыжки перед тренировкой опущены — их нет в каталоге."
+          },
+          "items": [
+            {
+              "exerciseId": "barbell-squat",
+              "rest": 180,
+              "superset": null,
+              "note": "Подходы 1–3 — 5/3/1 (неделя 1: 65/75/85% ТМ, последний «5+» — сколько получится чисто, с запасом 1). Подходы 4–8 — FSL 5×5 весом первого подхода, отдых 90 с.",
+              "sets": [
+                {
+                  "kind": "warmup",
+                  "repsMin": 10,
+                  "repsMax": 10
+                },
+                {
+                  "kind": "warmup",
+                  "repsMin": 5,
+                  "repsMax": 5
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 5,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 5,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 5,
+                  "rir": 3
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 5,
+                  "rir": 3
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 5,
+                  "rir": 3
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 5,
+                  "rir": 3
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 5,
+                  "rir": 3
+                }
+              ]
+            },
+            {
+              "exerciseId": "bench-press",
+              "rest": 180,
+              "superset": null,
+              "note": "Та же схема: 3 подхода 5/3/1 + 5×5 FSL. Со страховкой или в раме.",
+              "sets": [
+                {
+                  "kind": "warmup",
+                  "repsMin": 10,
+                  "repsMax": 10
+                },
+                {
+                  "kind": "warmup",
+                  "repsMin": 5,
+                  "repsMax": 5
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 5,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 5,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 5,
+                  "rir": 3
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 5,
+                  "rir": 3
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 5,
+                  "rir": 3
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 5,
+                  "rir": 3
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 5,
+                  "rir": 3
+                }
+              ]
+            },
+            {
+              "exerciseId": "push-up",
+              "rest": 60,
+              "superset": null,
+              "note": "Толкающее: суммарно 50–100 повторов за любое число подходов. Стандарт новичка по Wendler — 35 отжиманий подряд.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 2
+                }
+              ]
+            },
+            {
+              "exerciseId": "assisted-pull-up",
+              "rest": 60,
+              "superset": null,
+              "note": "Тянущее: 50–100 повторов суммарно. Гравитрон вместо подтягиваний — пока не будет 10 чистых подтягиваний.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 15,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 15,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 15,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 15,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 15,
+                  "rir": 2
+                }
+              ]
+            },
+            {
+              "exerciseId": "captain-chair-knee-raise",
+              "rest": 60,
+              "superset": null,
+              "note": "Кор: 50–100 повторов суммарно.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 12,
+                  "repsMax": 20,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 12,
+                  "repsMax": 20,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 12,
+                  "repsMax": 20,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 12,
+                  "repsMax": 20,
+                  "rir": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "fb-starting-strength-a",
+          "name": "Фулбади — Starting Strength (день A)",
+          "note": "Классическая линейная программа новичка: день A (присед, жим стоя, становая) чередуется с днём B (присед, жим лёжа, становая/взятие). Прибавляй вес каждую тренировку, пока получается сделать все 3×5. ~45–60 мин.",
+          "source": {
+            "author": "Mark Rippetoe",
+            "title": "Starting Strength Training Programs / «Who Wants to be a Novice? You Do» (startingstrength.com)",
+            "url": "https://startingstrength.com/get-started/programs",
+            "also": {
+              "author": "Mark Rippetoe",
+              "title": "Who Wants to be a Novice? You Do",
+              "url": "https://startingstrength.com/article/who_wants_to_be_a_novice_you_do"
+            },
+            "credibility": "Rippetoe — автор учебника «Starting Strength: Basic Barbell Training», тренер с 40-летним стажем; программа — эталон для новичков в силовом.",
+            "adapted": "Отдых — наш ориентир (3–5 мин), в источнике «сколько нужно». Подтягивания в дне A (по статье 2013 г.) → гравитрон, 3 подхода, т.к. новичок 78 кг обычно не подтягивается. Становая — ровно один рабочий подход 5 повторов, как у автора."
+          },
+          "items": [
+            {
+              "exerciseId": "barbell-squat",
+              "rest": 240,
+              "superset": null,
+              "note": "Разминка с пустого грифа с шагом до рабочего. 3×5 с одним весом.",
+              "sets": [
+                {
+                  "kind": "warmup",
+                  "repsMin": 5,
+                  "repsMax": 5
+                },
+                {
+                  "kind": "warmup",
+                  "repsMin": 5,
+                  "repsMax": 5
+                },
+                {
+                  "kind": "warmup",
+                  "repsMin": 3,
+                  "repsMax": 3
+                },
+                {
+                  "kind": "warmup",
+                  "repsMin": 2,
+                  "repsMax": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 5,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 5,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 5,
+                  "rir": 2
+                }
+              ]
+            },
+            {
+              "exerciseId": "overhead-press",
+              "rest": 180,
+              "superset": null,
+              "note": "Жим стоя 3×5.",
+              "sets": [
+                {
+                  "kind": "warmup",
+                  "repsMin": 5,
+                  "repsMax": 5
+                },
+                {
+                  "kind": "warmup",
+                  "repsMin": 5,
+                  "repsMax": 5
+                },
+                {
+                  "kind": "warmup",
+                  "repsMin": 3,
+                  "repsMax": 3
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 5,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 5,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 5,
+                  "rir": 2
+                }
+              ]
+            },
+            {
+              "exerciseId": "deadlift",
+              "rest": 240,
+              "superset": null,
+              "note": "Только 1 рабочий подход ×5 — «для становой больше не значит лучше» (Rippetoe). Спина нейтральная.",
+              "sets": [
+                {
+                  "kind": "warmup",
+                  "repsMin": 5,
+                  "repsMax": 5
+                },
+                {
+                  "kind": "warmup",
+                  "repsMin": 5,
+                  "repsMax": 5
+                },
+                {
+                  "kind": "warmup",
+                  "repsMin": 3,
+                  "repsMax": 3
+                },
+                {
+                  "kind": "warmup",
+                  "repsMin": 2,
+                  "repsMax": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 5,
+                  "rir": 2
+                }
+              ]
+            },
+            {
+              "exerciseId": "assisted-pull-up",
+              "rest": 120,
+              "superset": null,
+              "note": "Опционально, как в статье 2013 г.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 2
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chest",
+      "name": "Грудь",
+      "kind": "chest",
+      "note": "RP рекомендует 6–16 рабочих подходов на грудь в неделю (MEV 4–6), 2–4 сессии, не более 8–12 подходов на мышцу за тренировку. Шаблоны A и Б — дни из примерной недели RP (тяжёлый и средний), В — упражнения-лидеры исследования ACE по ЭМГ.",
+      "templates": [
+        {
+          "id": "chest-rp-heavy",
+          "name": "Грудь A — RP: тяжёлый день",
+          "note": "Пн из образца RP «грудь + передняя дельта»: тяжёлые жимы 5–10 повторов. ~30–35 мин; можно делать вместе с шаблоном «Спина» или «Руки».",
+          "source": {
+            "author": "Dr. Mike Israetel / Renaissance Periodization",
+            "title": "Chest Hypertrophy Training Tips (2024)",
+            "url": "https://rpstrength.com/blogs/articles/chest-hypertrophy-training-tips",
+            "also": {
+              "author": "Renaissance Periodization",
+              "title": "Front Delt Hypertrophy Training Tips (2024)",
+              "url": "https://rpstrength.com/blogs/articles/front-delt-hypertrophy-training-tips"
+            },
+            "credibility": "RP — компания Dr. Mike Israetel (PhD спортивной науки), автора концепции объёмных ориентиров MEV/MAV/MRV.",
+            "adapted": "Без изменений, кроме разминки. Жим стоя взят из того же образца RP в статье про переднюю дельту."
+          },
+          "items": [
+            {
+              "exerciseId": "bench-press",
+              "rest": 150,
+              "superset": null,
+              "note": "Жим лёжа, средний хват.",
+              "sets": [
+                {
+                  "kind": "warmup",
+                  "repsMin": 10,
+                  "repsMax": 10
+                },
+                {
+                  "kind": "warmup",
+                  "repsMin": 5,
+                  "repsMax": 5
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 2
+                }
+              ]
+            },
+            {
+              "exerciseId": "incline-bench-press",
+              "rest": 150,
+              "superset": null,
+              "note": "Наклон 30–45°.",
+              "sets": [
+                {
+                  "kind": "warmup",
+                  "repsMin": 5,
+                  "repsMax": 5
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 2
+                }
+              ]
+            },
+            {
+              "exerciseId": "overhead-press",
+              "rest": 150,
+              "superset": null,
+              "note": "Передняя дельта: RP советует не более 1 упражнения на неё за сессию.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "chest-rp-moderate",
+          "name": "Грудь Б — RP: средний день",
+          "note": "Ср из образца RP: гантели и разводки, 10–20 повторов. ~30 мин.",
+          "source": {
+            "author": "Dr. Mike Israetel / Renaissance Periodization",
+            "title": "Chest Hypertrophy Training Tips (2024)",
+            "url": "https://rpstrength.com/blogs/articles/chest-hypertrophy-training-tips",
+            "also": {
+              "author": "Renaissance Periodization",
+              "title": "Front Delt Hypertrophy Training Tips (2024)",
+              "url": "https://rpstrength.com/blogs/articles/front-delt-hypertrophy-training-tips"
+            },
+            "credibility": "См. шаблон A.",
+            "adapted": "Без изменений. Жим гантелей сидя — из образца RP для передней дельты."
+          },
+          "items": [
+            {
+              "exerciseId": "incline-db-press",
+              "rest": 120,
+              "superset": null,
+              "note": "Жим гантелей на наклонной.",
+              "sets": [
+                {
+                  "kind": "warmup",
+                  "repsMin": 10,
+                  "repsMax": 10
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 2
+                }
+              ]
+            },
+            {
+              "exerciseId": "db-fly",
+              "rest": 90,
+              "superset": null,
+              "note": "Разводка гантелей лёжа: руки чуть согнуты, растяжение без боли.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                }
+              ]
+            },
+            {
+              "exerciseId": "db-shoulder-press",
+              "rest": 120,
+              "superset": null,
+              "note": "Жим гантелей сидя (передняя дельта).",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "chest-ace-top3",
+          "name": "Грудь В — ACE: топ-3 по исследованию",
+          "note": "Три упражнения с наибольшей активацией большой грудной в исследовании ACE / Univ. of Wisconsin–La Crosse (2012): жим штанги лёжа (100%), «бабочка» (98%), кроссовер в наклоне (93%). ~35 мин.",
+          "source": {
+            "author": "American Council on Exercise / University of Wisconsin–La Crosse",
+            "title": "ACE Study Tests Common Chest Exercises, Finds Barbell Bench Press Most Effective (2012)",
+            "url": "https://www.acefitness.org/about-ace/press-room/press-releases/2930/ace-study-tests-common-chest-exercises-finds-barbell-bench-press-most-effective/",
+            "also": {
+              "author": "American Council on Exercise",
+              "title": "Resistance Training: Beginner Home and Gym-based Workouts (подходы/повторы/отдых)",
+              "url": "https://www.acefitness.org/resources/everyone/blog/8650/resistance-training-workouts-for-beginners/"
+            },
+            "credibility": "ACE — некоммерческая организация, аккредитованная (NCCA) сертификация тренеров; исследование выполнено независимой университетской лабораторией.",
+            "adapted": "Исследование даёт только выбор упражнений. Подходы/повторы/отдых — из общих рекомендаций ACE (1–4 подхода × 8–15 повторов, отдых 2–3 мин); выбраны 3 подхода."
+          },
+          "items": [
+            {
+              "exerciseId": "bench-press",
+              "rest": 150,
+              "superset": null,
+              "note": "Жим штанги лёжа — лидер исследования.",
+              "sets": [
+                {
+                  "kind": "warmup",
+                  "repsMin": 10,
+                  "repsMax": 10
+                },
+                {
+                  "kind": "warmup",
+                  "repsMin": 5,
+                  "repsMax": 5
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 12,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 12,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 12,
+                  "rir": 2
+                }
+              ]
+            },
+            {
+              "exerciseId": "pec-deck",
+              "rest": 120,
+              "superset": null,
+              "note": "Бабочка: 98% активации жима.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 15,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 15,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 15,
+                  "rir": 1
+                }
+              ]
+            },
+            {
+              "exerciseId": "cable-crossover",
+              "rest": 120,
+              "superset": null,
+              "note": "Кроссовер с наклоном корпуса вперёд («bent-forward»): 93% активации жима.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 15,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 15,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 15,
+                  "rir": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "back",
+      "name": "Спина",
+      "kind": "back",
+      "note": "Ориентир RP: не более 8–12 подходов на спину за сессию; 2–4 сессии в неделю. Повторы: тяжёлые 5–10, средние 10–20 (≈50% недельного объёма), лёгкие 20–30.",
+      "templates": [
+        {
+          "id": "back-rp-moderate",
+          "name": "Спина A — RP: средний день",
+          "note": "Ср из образца RP: вертикальная + горизонтальная тяга по 4 подхода в 10–20 повторов. ~30 мин.",
+          "source": {
+            "author": "Renaissance Periodization",
+            "title": "Back Hypertrophy Training Tips (2023)",
+            "url": "https://rpstrength.com/blogs/articles/back-hypertrophy-training-tips",
+            "credibility": "RP — Dr. Mike Israetel (PhD), объёмные ориентиры MEV/MAV/MRV.",
+            "adapted": "Подтягивания без веса на 10–20 повторов → подтягивания в гравитроне (новичку 78 кг такое число недоступно; гравитрон есть в списке упражнений RP — «Assisted Pullup»)."
+          },
+          "items": [
+            {
+              "exerciseId": "assisted-pull-up",
+              "rest": 120,
+              "superset": null,
+              "note": "Подбери помощь, чтобы получалось 10–20 повторов.",
+              "sets": [
+                {
+                  "kind": "warmup",
+                  "repsMin": 8,
+                  "repsMax": 8
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 2
+                }
+              ]
+            },
+            {
+              "exerciseId": "barbell-row",
+              "rest": 120,
+              "superset": null,
+              "note": "Тяга штанги в наклоне: спина ровная, корпус ~45°. Не превращай в рывок бёдрами.",
+              "sets": [
+                {
+                  "kind": "warmup",
+                  "repsMin": 10,
+                  "repsMax": 10
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "back-rp-heavy-light",
+          "name": "Спина Б — RP: тяжёлый + лёгкий",
+          "note": "Пн и Пт образца RP в одной сессии: 2+2 тяжёлых подхода и 2+2 лёгких. Итого 8 подходов — в пределах лимита RP 8–12 за сессию. ~35 мин.",
+          "source": {
+            "author": "Renaissance Periodization",
+            "title": "Back Hypertrophy Training Tips (2023)",
+            "url": "https://rpstrength.com/blogs/articles/back-hypertrophy-training-tips",
+            "credibility": "См. шаблон A.",
+            "adapted": "Объединены дни Пн и Пт образца (в источнике — разные дни). Подтягивания с весом → тяга верхнего блока (новичок)."
+          },
+          "items": [
+            {
+              "exerciseId": "barbell-row",
+              "rest": 150,
+              "superset": null,
+              "note": "Тяжёлые подходы.",
+              "sets": [
+                {
+                  "kind": "warmup",
+                  "repsMin": 10,
+                  "repsMax": 10
+                },
+                {
+                  "kind": "warmup",
+                  "repsMin": 5,
+                  "repsMax": 5
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 2
+                }
+              ]
+            },
+            {
+              "exerciseId": "lat-pulldown",
+              "rest": 150,
+              "superset": null,
+              "note": "Вместо подтягиваний с весом.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 2
+                }
+              ]
+            },
+            {
+              "exerciseId": "machine-row",
+              "rest": 90,
+              "superset": null,
+              "note": "Лёгкие подходы, полная амплитуда.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 1
+                }
+              ]
+            },
+            {
+              "exerciseId": "underhand-pulldown",
+              "rest": 90,
+              "superset": null,
+              "note": "Обратный хват (ладони к себе), на ширине плеч.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "back-ace-blocks",
+          "name": "Спина В — ACE: спина + бицепс блоками",
+          "note": "Образец ACE: 3 блока по 2 упражнения без отдыха между ними, отдых 2–3 мин после пары. 8–15 повторов, 1–4 подхода (здесь 3). ~40 мин.",
+          "source": {
+            "author": "American Council on Exercise",
+            "title": "What is the Best Back Exercise? (ACE Certified, Jan 2023)",
+            "url": "https://www.acefitness.org/continuing-education/certified/january-2023/8214/what-is-the-best-back-exercise/",
+            "credibility": "Опирается на ЭМГ-исследование ACE (2018) по упражнениям на спину и исследование ACE по бицепсу (2014).",
+            "adapted": "Подтягивания → гравитрон. «Biceps curl» → подъём EZ-штанги, «seated biceps curl» → гантели (сидя)."
+          },
+          "items": [
+            {
+              "exerciseId": "barbell-row",
+              "rest": 150,
+              "superset": "A",
+              "note": "Блок 1. По данным ACE — лучшее единичное упражнение на спину.",
+              "sets": [
+                {
+                  "kind": "warmup",
+                  "repsMin": 10,
+                  "repsMax": 10
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 15,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 15,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 15,
+                  "rir": 2
+                }
+              ]
+            },
+            {
+              "exerciseId": "concentration-curl",
+              "rest": 150,
+              "superset": "A",
+              "note": "Блок 1, сразу после тяги.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 15,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 15,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 15,
+                  "rir": 1
+                }
+              ]
+            },
+            {
+              "exerciseId": "iyt-raise",
+              "rest": 150,
+              "superset": "B",
+              "note": "Блок 2. Лёжа грудью на наклонной скамье, руки поднимаются буквами I, Y, T, лёгкие гантели.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 15,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 15,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 15,
+                  "rir": 1
+                }
+              ]
+            },
+            {
+              "exerciseId": "ez-curl",
+              "rest": 150,
+              "superset": "B",
+              "note": "Блок 2.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 15,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 15,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 15,
+                  "rir": 1
+                }
+              ]
+            },
+            {
+              "exerciseId": "assisted-pull-up",
+              "rest": 150,
+              "superset": "C",
+              "note": "Блок 3. По ACE — лучшее для широчайших.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 15,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 15,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 15,
+                  "rir": 2
+                }
+              ]
+            },
+            {
+              "exerciseId": "db-curl",
+              "rest": 150,
+              "superset": "C",
+              "note": "Блок 3. Сидя.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 15,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 15,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 15,
+                  "rir": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "legs",
+      "name": "Ноги",
+      "kind": "legs",
+      "note": "Собраны из трёх статей RP (квадрицепс, задняя поверхность, ягодицы): день недели образца = шаблон. Квадрицепс MEV 4–6 / MAV 6–14; бицепс бедра MEV 2–4 / MAV 2–8; ягодицы MEV 6–8 / MAV 8–24 подходов в неделю.",
+      "templates": [
+        {
+          "id": "legs-rp-heavy",
+          "name": "Ноги A — RP: тяжёлый день",
+          "note": "Пн образцов RP: тяжёлое (5–10 повторов) для квадрицепса, задней поверхности и ягодиц. 12 рабочих подходов, ~55–65 мин.",
+          "source": {
+            "author": "Renaissance Periodization",
+            "title": "Quad Hypertrophy Training Tips (2024)",
+            "url": "https://rpstrength.com/blogs/articles/quad-hypertrophy-training-tips",
+            "also": [
+              {
+                "author": "Dr. Mike Israetel / Renaissance Periodization",
+                "title": "Hamstring Hypertrophy Training Tips (2023)",
+                "url": "https://rpstrength.com/blogs/articles/hamstring-hypertrophy-training-tips"
+              },
+              {
+                "author": "Dr. Mike Israetel / Renaissance Periodization",
+                "title": "Glute Hypertrophy Training Tips (2024)",
+                "url": "https://rpstrength.com/blogs/articles/glute-hypertrophy-training-tips"
+              }
+            ],
+            "credibility": "RP — Dr. Mike Israetel (PhD). Объединены три профильные статьи одного автора.",
+            "adapted": "Становая сумо с дефицитом (Пн ягодиц) убрана: сложное упражнение для новичка и дублирует нагрузку румынской тяги в тот же день. Становая на прямых ногах → румынская тяга (каталог: есть оба; румынская безопаснее для новичка)."
+          },
+          "items": [
+            {
+              "exerciseId": "barbell-squat",
+              "rest": 180,
+              "superset": null,
+              "note": "Приседания.",
+              "sets": [
+                {
+                  "kind": "warmup",
+                  "repsMin": 10,
+                  "repsMax": 10
+                },
+                {
+                  "kind": "warmup",
+                  "repsMin": 5,
+                  "repsMax": 5
+                },
+                {
+                  "kind": "warmup",
+                  "repsMin": 3,
+                  "repsMax": 3
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 2
+                }
+              ]
+            },
+            {
+              "exerciseId": "hack-squat",
+              "rest": 150,
+              "superset": null,
+              "note": "Гакк-присед.",
+              "sets": [
+                {
+                  "kind": "warmup",
+                  "repsMin": 8,
+                  "repsMax": 8
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 2
+                }
+              ]
+            },
+            {
+              "exerciseId": "romanian-deadlift",
+              "rest": 150,
+              "superset": null,
+              "note": "Румынская тяга: таз назад, гриф по ногам, спина нейтральна.",
+              "sets": [
+                {
+                  "kind": "warmup",
+                  "repsMin": 8,
+                  "repsMax": 8
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 2
+                }
+              ]
+            },
+            {
+              "exerciseId": "hip-thrust",
+              "rest": 120,
+              "superset": null,
+              "note": "Ягодичный мостик со штангой, подкладка на гриф.",
+              "sets": [
+                {
+                  "kind": "warmup",
+                  "repsMin": 10,
+                  "repsMax": 10
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "legs-rp-moderate",
+          "name": "Ноги Б — RP: средний день",
+          "note": "Ср образцов RP: 10–20 повторов. 17 подходов, ~55–65 мин. Первые 2 недели можно делать на 1 подход меньше в каждом упражнении.",
+          "source": {
+            "author": "Renaissance Periodization",
+            "title": "Quad Hypertrophy Training Tips (2024)",
+            "url": "https://rpstrength.com/blogs/articles/quad-hypertrophy-training-tips",
+            "also": [
+              {
+                "author": "Dr. Mike Israetel / Renaissance Periodization",
+                "title": "Hamstring Hypertrophy Training Tips (2023)",
+                "url": "https://rpstrength.com/blogs/articles/hamstring-hypertrophy-training-tips"
+              },
+              {
+                "author": "Dr. Mike Israetel / Renaissance Periodization",
+                "title": "Glute Hypertrophy Training Tips (2024)",
+                "url": "https://rpstrength.com/blogs/articles/glute-hypertrophy-training-tips"
+              }
+            ],
+            "credibility": "См. шаблон A.",
+            "adapted": "Мостик на одной ноге со штангой → мостик со штангой на двух ногах (в каталоге нет одноногого; на одной ноге можно делать тот же тренажёр/гриф). Присед сумо → гоблет-присед широкой постановкой (ближайшее в каталоге). Сгибание ног лёжа 3×10–30 → диапазон сужен до 10–20 для двойной прогрессии."
+          },
+          "items": [
+            {
+              "exerciseId": "hack-squat",
+              "rest": 120,
+              "superset": null,
+              "note": "Гакк-присед.",
+              "sets": [
+                {
+                  "kind": "warmup",
+                  "repsMin": 10,
+                  "repsMax": 10
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 2
+                }
+              ]
+            },
+            {
+              "exerciseId": "leg-press",
+              "rest": 120,
+              "superset": null,
+              "note": "Жим ногами.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 2
+                }
+              ]
+            },
+            {
+              "exerciseId": "leg-curl",
+              "rest": 90,
+              "superset": null,
+              "note": "Сгибание ног лёжа.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                }
+              ]
+            },
+            {
+              "exerciseId": "hip-thrust",
+              "rest": 90,
+              "superset": null,
+              "note": "В источнике — на одной ноге (5 подходов). Освоишь — делай поочерёдно на каждую ногу.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                }
+              ]
+            },
+            {
+              "exerciseId": "goblet-squat",
+              "rest": 90,
+              "superset": null,
+              "note": "Широкая постановка, носки наружу — как присед сумо.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "legs-rp-light",
+          "name": "Ноги В — RP: лёгкий день",
+          "note": "Пт образцов RP: лёгкие веса, 20–30 повторов, сильное «жжение». 13 подходов, ~45 мин.",
+          "source": {
+            "author": "Renaissance Periodization",
+            "title": "Quad Hypertrophy Training Tips (2024)",
+            "url": "https://rpstrength.com/blogs/articles/quad-hypertrophy-training-tips",
+            "also": [
+              {
+                "author": "Dr. Mike Israetel / Renaissance Periodization",
+                "title": "Hamstring Hypertrophy Training Tips (2023)",
+                "url": "https://rpstrength.com/blogs/articles/hamstring-hypertrophy-training-tips"
+              },
+              {
+                "author": "Dr. Mike Israetel / Renaissance Periodization",
+                "title": "Glute Hypertrophy Training Tips (2024)",
+                "url": "https://rpstrength.com/blogs/articles/glute-hypertrophy-training-tips"
+              }
+            ],
+            "credibility": "См. шаблон A.",
+            "adapted": "Выпады со штангой в ходьбе → выпады с гантелями (безопаснее для новичка, есть в каталоге). Повторы выпадов — на обе ноги в сумме."
+          },
+          "items": [
+            {
+              "exerciseId": "leg-extension",
+              "rest": 75,
+              "superset": null,
+              "note": "Разгибание ног.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 1
+                }
+              ]
+            },
+            {
+              "exerciseId": "leg-press",
+              "rest": 90,
+              "superset": null,
+              "note": "Жим ногами.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 2
+                }
+              ]
+            },
+            {
+              "exerciseId": "seated-leg-curl",
+              "rest": 75,
+              "superset": null,
+              "note": "Сгибание ног сидя.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 1
+                }
+              ]
+            },
+            {
+              "exerciseId": "walking-lunge",
+              "rest": 90,
+              "superset": null,
+              "note": "Выпады в ходьбе с гантелями; 20–30 шагов суммарно.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 2
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shoulders",
+      "name": "Плечи",
+      "kind": "shoulders",
+      "note": "Средняя дельта: MEV 6–8, MAV 8–24 подходов/нед; задняя: MAV 4–12 (часть даёт тренировка спины); передняя: MAV 4–8, не больше одного упражнения за сессию (основную работу даёт жим на грудь). Шаблоны = дни образцов RP для средней, задней и передней дельт.",
+      "templates": [
+        {
+          "id": "shoulders-rp-heavy",
+          "name": "Плечи A — RP: тяжёлый день",
+          "note": "Пн образцов RP. 14 подходов, ~40 мин.",
+          "source": {
+            "author": "Renaissance Periodization",
+            "title": "Side Delt Hypertrophy Training Tips (2024)",
+            "url": "https://rpstrength.com/blogs/articles/side-delt-hypertrophy-training-tips",
+            "also": [
+              {
+                "author": "Dr. Mike Israetel / Renaissance Periodization",
+                "title": "Rear Delt Hypertrophy Training Tips (2024)",
+                "url": "https://rpstrength.com/blogs/articles/rear-delt-hypertrophy-training-tips"
+              },
+              {
+                "author": "Renaissance Periodization",
+                "title": "Front Delt Hypertrophy Training Tips (2024)",
+                "url": "https://rpstrength.com/blogs/articles/front-delt-hypertrophy-training-tips"
+              }
+            ],
+            "credibility": "RP — Dr. Mike Israetel (PhD). Три профильные статьи одного автора.",
+            "adapted": "Тяга штанги к лицу (barbell face pull) на 5–10 → тяга каната к лицу на 10–20: в каталоге нет штангового варианта, а сама RP пишет, что задней дельте 5–10 повторов «подходит очень немногим». Обратная бабочка = machine rear delts из источника."
+          },
+          "items": [
+            {
+              "exerciseId": "overhead-press",
+              "rest": 150,
+              "superset": null,
+              "note": "Передняя дельта (образец RP).",
+              "sets": [
+                {
+                  "kind": "warmup",
+                  "repsMin": 10,
+                  "repsMax": 10
+                },
+                {
+                  "kind": "warmup",
+                  "repsMin": 5,
+                  "repsMax": 5
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 2
+                }
+              ]
+            },
+            {
+              "exerciseId": "upright-row",
+              "rest": 120,
+              "superset": null,
+              "note": "Тяга штанги к подбородку: хват шире плеч, локти не выше плеч — бережёт плечевой сустав.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 2
+                }
+              ]
+            },
+            {
+              "exerciseId": "lateral-raise",
+              "rest": 75,
+              "superset": null,
+              "note": "Махи гантелями в стороны.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                }
+              ]
+            },
+            {
+              "exerciseId": "face-pull",
+              "rest": 75,
+              "superset": null,
+              "note": "Тяга каната к лицу.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                }
+              ]
+            },
+            {
+              "exerciseId": "reverse-pec-deck",
+              "rest": 75,
+              "superset": null,
+              "note": "Обратная бабочка.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "shoulders-rp-moderate",
+          "name": "Плечи Б — RP: средний день",
+          "note": "Ср образцов RP: всё в 10–20 повторов. 18 подходов, ~45–50 мин. Первые недели — по 3 подхода вместо 4.",
+          "source": {
+            "author": "Renaissance Periodization",
+            "title": "Side Delt Hypertrophy Training Tips (2024)",
+            "url": "https://rpstrength.com/blogs/articles/side-delt-hypertrophy-training-tips",
+            "also": [
+              {
+                "author": "Dr. Mike Israetel / Renaissance Periodization",
+                "title": "Rear Delt Hypertrophy Training Tips (2024)",
+                "url": "https://rpstrength.com/blogs/articles/rear-delt-hypertrophy-training-tips"
+              },
+              {
+                "author": "Renaissance Periodization",
+                "title": "Front Delt Hypertrophy Training Tips (2024)",
+                "url": "https://rpstrength.com/blogs/articles/front-delt-hypertrophy-training-tips"
+              }
+            ],
+            "credibility": "См. шаблон A.",
+            "adapted": "Тяга гантелей к подбородку → тяга штанги к подбородку (в каталоге только штанга). Face pull с гантелями → тяга каната к лицу."
+          },
+          "items": [
+            {
+              "exerciseId": "db-shoulder-press",
+              "rest": 120,
+              "superset": null,
+              "note": "Жим гантелей сидя (передняя дельта).",
+              "sets": [
+                {
+                  "kind": "warmup",
+                  "repsMin": 10,
+                  "repsMax": 10
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 2
+                }
+              ]
+            },
+            {
+              "exerciseId": "lateral-raise",
+              "rest": 60,
+              "superset": null,
+              "note": "Махи в стороны.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                }
+              ]
+            },
+            {
+              "exerciseId": "upright-row",
+              "rest": 90,
+              "superset": null,
+              "note": "В источнике — с гантелями.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 2
+                }
+              ]
+            },
+            {
+              "exerciseId": "rear-delt-fly",
+              "rest": 60,
+              "superset": null,
+              "note": "Разведение гантелей в наклоне.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                }
+              ]
+            },
+            {
+              "exerciseId": "face-pull",
+              "rest": 60,
+              "superset": null,
+              "note": "В источнике — с гантелями.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "shoulders-rp-light",
+          "name": "Плечи В — RP: лёгкий день",
+          "note": "Пт образцов RP: 20–30 повторов. 16 подходов, ~40 мин.",
+          "source": {
+            "author": "Renaissance Periodization",
+            "title": "Side Delt Hypertrophy Training Tips (2024)",
+            "url": "https://rpstrength.com/blogs/articles/side-delt-hypertrophy-training-tips",
+            "also": [
+              {
+                "author": "Dr. Mike Israetel / Renaissance Periodization",
+                "title": "Rear Delt Hypertrophy Training Tips (2024)",
+                "url": "https://rpstrength.com/blogs/articles/rear-delt-hypertrophy-training-tips"
+              }
+            ],
+            "credibility": "См. шаблон A.",
+            "adapted": "Махи «большими пальцами вниз» → обычные махи гантелями (техника — в заметке)."
+          },
+          "items": [
+            {
+              "exerciseId": "lateral-raise",
+              "rest": 60,
+              "superset": null,
+              "note": "В источнике — «thumbs down»: мизинец чуть выше большого пальца.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 1
+                }
+              ]
+            },
+            {
+              "exerciseId": "cable-upright-row",
+              "rest": 60,
+              "superset": null,
+              "note": "Тяга нижнего блока к подбородку, локти выше кистей, до уровня плеч.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 1
+                }
+              ]
+            },
+            {
+              "exerciseId": "reverse-pec-deck",
+              "rest": 60,
+              "superset": null,
+              "note": "Обратная бабочка.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 1
+                }
+              ]
+            },
+            {
+              "exerciseId": "face-pull",
+              "rest": 60,
+              "superset": null,
+              "note": "Тяга каната к лицу.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "arms",
+      "name": "Руки (бицепс + трицепс)",
+      "kind": "arms",
+      "note": "Бицепс: 8–20 подходов/нед (новичкам 6–10); трицепс: MEV 4–6, MAV 6–16. Обе мышцы уже получают нагрузку от тяг и жимов, поэтому прямой работы нужно немного.",
+      "templates": [
+        {
+          "id": "arms-rp-heavy-light",
+          "name": "Руки A — RP: тяжёлый + лёгкий",
+          "note": "Пн (тяжёлый) и Пт (лёгкий) образцов RP в одной сессии. 14 подходов, ~35–40 мин.",
+          "source": {
+            "author": "Dr. Mike Israetel / Renaissance Periodization",
+            "title": "Bicep Hypertrophy Training Tips (2023)",
+            "url": "https://rpstrength.com/blogs/articles/bicep-hypertrophy-training-tips",
+            "also": {
+              "author": "Renaissance Periodization",
+              "title": "Tricep Hypertrophy Training Tips (2024)",
+              "url": "https://rpstrength.com/blogs/articles/tricep-hypertrophy-training-tips"
+            },
+            "credibility": "RP — Dr. Mike Israetel (PhD).",
+            "adapted": "Объединены дни Пн и Пт (в источнике — разные дни). Жим JM (сложная техника, нагрузка на локти) → жим лёжа узким хватом (есть у RP в смежном контексте, безопаснее). Сгибания на блоке и разгибания на блоке — как в источнике."
+          },
+          "items": [
+            {
+              "exerciseId": "barbell-curl",
+              "rest": 120,
+              "superset": null,
+              "note": "Подъём штанги на бицепс, без раскачки.",
+              "sets": [
+                {
+                  "kind": "warmup",
+                  "repsMin": 10,
+                  "repsMax": 10
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 2
+                }
+              ]
+            },
+            {
+              "exerciseId": "close-grip-bench",
+              "rest": 150,
+              "superset": null,
+              "note": "Хват на ширине плеч, локти вдоль корпуса. Замена JM-жима.",
+              "sets": [
+                {
+                  "kind": "warmup",
+                  "repsMin": 10,
+                  "repsMax": 10
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 2
+                }
+              ]
+            },
+            {
+              "exerciseId": "cable-curl",
+              "rest": 60,
+              "superset": "A",
+              "note": "Сгибания на нижнем блоке.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 1
+                }
+              ]
+            },
+            {
+              "exerciseId": "triceps-pushdown",
+              "rest": 60,
+              "superset": "A",
+              "note": "Разгибания на верхнем блоке. Суперсет со сгибаниями — экономит время.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "arms-rp-moderate",
+          "name": "Руки Б — RP: средний день",
+          "note": "Ср образцов RP: 10–20 повторов. 12 подходов, ~35 мин.",
+          "source": {
+            "author": "Dr. Mike Israetel / Renaissance Periodization",
+            "title": "Bicep Hypertrophy Training Tips (2023)",
+            "url": "https://rpstrength.com/blogs/articles/bicep-hypertrophy-training-tips",
+            "also": {
+              "author": "Renaissance Periodization",
+              "title": "Tricep Hypertrophy Training Tips (2024)",
+              "url": "https://rpstrength.com/blogs/articles/tricep-hypertrophy-training-tips"
+            },
+            "credibility": "См. шаблон A.",
+            "adapted": "Разгибания EZ из-за головы → гантель из-за головы. Брусья → брусья в гравитроне (новичку 10–20 повторов на брусьях недоступно)."
+          },
+          "items": [
+            {
+              "exerciseId": "spider-curl",
+              "rest": 75,
+              "superset": null,
+              "note": "Лёжа грудью на наклонной скамье, руки свисают вертикально. В источнике 6 подходов; первые недели — 4.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                }
+              ]
+            },
+            {
+              "exerciseId": "overhead-triceps-extension",
+              "rest": 90,
+              "superset": null,
+              "note": "Французский жим гантели из-за головы.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                }
+              ]
+            },
+            {
+              "exerciseId": "assisted-dips",
+              "rest": 90,
+              "superset": null,
+              "note": "Корпус вертикально, плечи не ниже локтей.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "arms-ace-ab",
+          "name": "Руки В — ACE: лидеры ЭМГ-исследований",
+          "note": "Упражнения-лидеры двух исследований ACE: бицепс (2014) — концентрированные сгибания; трицепс (2012) — отжимания «треугольником», разгибания в наклоне, брусья. Формат пар — как в образце ACE: 2 упражнения подряд, отдых 2–3 мин. ~35 мин.",
+          "source": {
+            "author": "J. Porcari и др. / ACE",
+            "title": "New Study Reveals Best Biceps Exercises (2014)",
+            "url": "https://www.acefitness.org/about-ace/press-room/press-releases/4989/new-study-reveals-best-biceps-exercises/",
+            "also": {
+              "author": "ACE / University of Wisconsin–La Crosse",
+              "title": "ACE Study Highlights Most Effective Triceps Exercises (2012)",
+              "url": "https://www.acefitness.org/about-ace/press-room/press-releases/2718/american-council-on-exercise-study-highlights-most-effective-triceps-exercises/"
+            },
+            "credibility": "Независимые университетские ЭМГ-исследования по заказу ACE (NCCA-аккредитованная организация).",
+            "adapted": "Исследования дают выбор упражнений, не программу. Подходы/повторы/отдых — из рекомендаций ACE (1–4 × 8–15, отдых 2–3 мин после пары). Брусья → в гравитроне. ЭМГ ≠ гарантированный рост — ограничение исследования."
+          },
+          "items": [
+            {
+              "exerciseId": "concentration-curl",
+              "rest": 150,
+              "superset": "A",
+              "note": "Лидер по бицепсу: локоть упирается в бедро.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 15,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 15,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 15,
+                  "rir": 1
+                }
+              ]
+            },
+            {
+              "exerciseId": "diamond-push-up",
+              "rest": 150,
+              "superset": "A",
+              "note": "Ладони вместе «треугольником» под грудью — лидер по трицепсу в исследовании ACE. Тяжело — с колен.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 15,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 15,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 15,
+                  "rir": 2
+                }
+              ]
+            },
+            {
+              "exerciseId": "db-kickback",
+              "rest": 150,
+              "superset": "B",
+              "note": "Плечо неподвижно параллельно полу.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 15,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 15,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 15,
+                  "rir": 1
+                }
+              ]
+            },
+            {
+              "exerciseId": "cable-curl",
+              "rest": 150,
+              "superset": "B",
+              "note": "Сгибания на нижнем блоке.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 15,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 15,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 15,
+                  "rir": 1
+                }
+              ]
+            },
+            {
+              "exerciseId": "assisted-dips",
+              "rest": 120,
+              "superset": null,
+              "note": "Брусья — в тройке лидеров по трицепсу.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 15,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 15,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 15,
+                  "rir": 2
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "core",
+      "name": "Пресс и кор",
+      "kind": "core",
+      "note": "Важно: упражнения на пресс не сжигают жир на животе локально (Vispute 2011, РКИ: 6 недель тренировок пресса не уменьшили жир живота). Кубики проявятся от дефицита калорий; тренировки пресса делают мышцы крупнее и сильнее. RP: MAV 4–12 подходов в неделю, 3–6 сессий.",
+      "templates": [
+        {
+          "id": "core-mcgill-big3",
+          "name": "Кор A — «Большая тройка» McGill",
+          "note": "Стабилизация и выносливость кора, защита поясницы. Обратная пирамида 8–6–4 повтора, каждое повторение — удержание 10 с. ~15 мин; хорошо как разминка перед приседом/становой.",
+          "source": {
+            "author": "Lorne Opler, M.Ed., CSCS (ACE) по методике проф. Stuart McGill",
+            "title": "Low-back Exercises: Stuart McGill's Big Three",
+            "url": "https://www.acefitness.org/resources/pros/expert-articles/7077/low-back-exercises-stuart-mcgill-s-big-three/",
+            "credibility": "Stuart McGill — почётный профессор биомеханики позвоночника (Univ. of Waterloo), сотни рецензируемых работ; изложение — сертифицированный CSCS, площадка ACE.",
+            "adapted": "Без изменений по упражнениям. Удержания по 10 с записаны как повторы."
+          },
+          "items": [
+            {
+              "exerciseId": "mcgill-curl-up",
+              "rest": 60,
+              "superset": null,
+              "note": "Одна нога согнута, другая прямая, ладони под поясницей; приподними голову и плечи на 2–3 см, удержание 10 с. Половина повторов — со сменой ног.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 8,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 6,
+                  "repsMax": 6,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 4,
+                  "repsMax": 4,
+                  "rir": 2
+                }
+              ]
+            },
+            {
+              "exerciseId": "side-plank",
+              "rest": 60,
+              "superset": null,
+              "note": "Боковая планка (упражнение «на время»): 8/6/4 удержания по 10 с с короткой паузой = 80/60/40 с суммарно на КАЖДУЮ сторону. Колени согнуты; сложнее — ноги прямые.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "timeSec": 80
+                },
+                {
+                  "kind": "normal",
+                  "timeSec": 60
+                },
+                {
+                  "kind": "normal",
+                  "timeSec": 40
+                }
+              ]
+            },
+            {
+              "exerciseId": "bird-dog",
+              "rest": 60,
+              "superset": null,
+              "note": "Каждое повторение — удержание 10 с: рука и противоположная нога вытянуты, поясница не прогибается. Повторы на каждую сторону.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 8,
+                  "repsMax": 8,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 6,
+                  "repsMax": 6,
+                  "rir": 2
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 4,
+                  "repsMax": 4,
+                  "rir": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "core-ace-sdsu",
+          "name": "Кор Б — ACE: лучшие упражнения на пресс",
+          "note": "Тройка лидеров исследования ACE / San Diego State (2001) по прямой и косым мышцам живота + обратные скручивания (3-е место по косым). ~20 мин.",
+          "source": {
+            "author": "Peter Francis, PhD (SDSU Biomechanics Lab) / ACE",
+            "title": "ACE-Sponsored Study Reveals Best and Worst Abdominal Exercises (2001)",
+            "url": "https://www.acefitness.org/about-ace/press-room/in-the-news/246/american-council-on-exercise-ace-sponsored-study-reveals-best-and-worst-abdominal-exercises/",
+            "credibility": "Университетская лаборатория биомеханики, ЭМГ 13 упражнений; одно из самых цитируемых сравнений упражнений на пресс.",
+            "adapted": "Исследование даёт рейтинг, а не программу (ACE советует «несколько лучших упражнений, ~5 мин ежедневно»). Подходы/повторы — диапазон «средний» из статьи RP про пресс (10–20). ACE предупреждает: «велосипед» часто делают рывками — медленно."
+          },
+          "items": [
+            {
+              "exerciseId": "bicycle-crunch",
+              "rest": 60,
+              "superset": null,
+              "note": "№1 по прямой мышце. Медленно, без рывков; повтор = обе стороны.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                }
+              ]
+            },
+            {
+              "exerciseId": "captain-chair-knee-raise",
+              "rest": 60,
+              "superset": null,
+              "note": "№2 по прямой, №1 по косым. Подкручивай таз, а не просто поднимай колени.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                }
+              ]
+            },
+            {
+              "exerciseId": "stability-ball-crunch",
+              "rest": 60,
+              "superset": null,
+              "note": "№3 по прямой мышце.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                }
+              ]
+            },
+            {
+              "exerciseId": "reverse-crunch",
+              "rest": 60,
+              "superset": null,
+              "note": "№3 по косым.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "core-rp-week",
+          "name": "Кор В — RP: гипертрофия пресса",
+          "note": "Все три упражнения из образца недели RP в одной сессии: 12 подходов (верх MAV 4–12). Можно, как в источнике, разнести по одному упражнению в конец каждой фулбади-тренировки. ~25 мин.",
+          "source": {
+            "author": "Renaissance Periodization",
+            "title": "Ab Hypertrophy Training Tips",
+            "url": "https://rpstrength.com/blogs/articles/ab-hypertrophy-training-tips",
+            "credibility": "RP — Dr. Mike Israetel (PhD).",
+            "adapted": "Объединены Пн/Ср/Пт образца. Reaching sit-up → подъём корпуса на наклонной скамье (ставь малый наклон, тянись руками вперёд). Когда >30 повторов до отказа даётся — добавь вес или усложни (правило RP)."
+          },
+          "items": [
+            {
+              "exerciseId": "candlestick",
+              "rest": 60,
+              "superset": null,
+              "note": "Лёжа на спине, ноги вверх, медленно отрывай таз от пола и опускай; тяжело — по RP это «тяжёлые» 5–10.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 5,
+                  "repsMax": 10,
+                  "rir": 1
+                }
+              ]
+            },
+            {
+              "exerciseId": "decline-situp",
+              "rest": 60,
+              "superset": null,
+              "note": "Reaching sit-up: руки тянутся вперёд за колени. Первые недели — 4 подхода.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 10,
+                  "repsMax": 20,
+                  "rir": 1
+                }
+              ]
+            },
+            {
+              "exerciseId": "hanging-knee-raise",
+              "rest": 60,
+              "superset": null,
+              "note": "Колени к груди, без раскачки. Не получается 20 — делай в упоре на брусьях.",
+              "sets": [
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 1
+                },
+                {
+                  "kind": "normal",
+                  "repsMin": 20,
+                  "repsMax": 30,
+                  "rir": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -171,5 +171,14 @@ export const EXERCISES = [
   // ───── Всё тело ─────
   { id: 'kettlebell-clean-press', name: 'Взятие гири на грудь и жим', aliases: ['взятие и жим гири'], muscle: 'full_body', secondary: ['shoulders', 'glutes'], equipment: 'kettlebell', type: 'weight_reps', step: 4, rest: 90 },
   { id: 'turkish-get-up', name: 'Турецкий подъём', aliases: ['турецкий подъем'], muscle: 'full_body', secondary: ['shoulders', 'abs'], equipment: 'kettlebell', type: 'weight_reps', step: 4, rest: 90 },
-  { id: 'thruster', name: 'Трастеры', aliases: ['трастер', 'thruster'], muscle: 'full_body', secondary: ['quads', 'shoulders', 'glutes'], equipment: 'dumbbell', type: 'weight_reps', step: 2, rest: 90 }
+  { id: 'thruster', name: 'Трастеры', aliases: ['трастер', 'thruster'], muscle: 'full_body', secondary: ['quads', 'shoulders', 'glutes'], equipment: 'dumbbell', type: 'weight_reps', step: 2, rest: 90 },
+  // ───── Из библиотеки тренировок (research/workouts.md, раздел 10) ─────
+  { id: 'bird-dog', name: 'Птица-собака (bird dog)', aliases: ['птица собака', 'bird dog', 'берд дог'], muscle: 'abs', secondary: ['lower_back', 'glutes'], equipment: 'bodyweight', type: 'bw_reps', step: 2.5, rest: 60 },
+  { id: 'mcgill-curl-up', name: 'Скручивание McGill', aliases: ['скручивание макгилла', 'curl-up', 'макгилл'], muscle: 'abs', secondary: [], equipment: 'bodyweight', type: 'bw_reps', step: 2.5, rest: 60 },
+  { id: 'iyt-raise', name: 'Подъём I-Y-T лёжа на наклонной', aliases: ['iyt', 'ай вай ти'], muscle: 'back', secondary: ['shoulders'], equipment: 'dumbbell', type: 'weight_reps', step: 1, rest: 75, startWeight: 2 },
+  { id: 'diamond-push-up', name: 'Отжимания узким хватом «треугольник»', aliases: ['алмазные отжимания', 'отжимания треугольником', 'diamond push-up'], muscle: 'triceps', secondary: ['chest', 'shoulders'], equipment: 'bodyweight', type: 'bw_reps', step: 2.5, rest: 90 },
+  { id: 'spider-curl', name: 'Паучьи сгибания', aliases: ['спайдер', 'spider curl', 'сгибания на наклонной грудью'], muscle: 'biceps', secondary: [], equipment: 'ez', type: 'weight_reps', bar: 'ez', step: 2.5, rest: 75 },
+  { id: 'underhand-pulldown', name: 'Тяга верхнего блока обратным хватом', aliases: ['верхний блок обратным хватом'], muscle: 'back', secondary: ['biceps'], equipment: 'cable', type: 'weight_reps', step: 5, rest: 120 },
+  { id: 'cable-upright-row', name: 'Тяга нижнего блока к подбородку', aliases: ['протяжка на блоке', 'тяга к подбородку на блоке'], muscle: 'shoulders', secondary: ['back'], equipment: 'cable', type: 'weight_reps', step: 5, rest: 75 },
+  { id: 'candlestick', name: 'Свеча (подъём ног и таза лёжа)', aliases: ['свеча', 'candlestick'], muscle: 'abs', secondary: [], equipment: 'bodyweight', type: 'bw_reps', step: 2.5, rest: 60 }
 ];

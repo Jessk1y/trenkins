@@ -35,3 +35,18 @@
 @media (min-width: 720px) {
   .tp-set { grid-template-columns: 38px minmax(0, 320px) 38px; }
 }
+
+/* Библиотека тренировок */
+.lib-ico { width: 34px; height: 34px; border-radius: 10px; background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; font-weight: 800; flex: none; }
+.lib { display: flex; flex-direction: column; gap: 12px; }
+.lib-tpl { background: var(--surface-2); border-radius: var(--r-lg); padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+.lib-name { font-weight: 800; font-size: 16px; }
+.lib-ex { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 3px; font-size: 14px; }
+.lib-ex li { padding-right: 2px; }
+.lib-ex li > span:first-child { margin-right: 6px; }
+.lib-sets { color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.lib-src { display: flex; gap: 6px; align-items: flex-start; font-size: 12px; color: var(--accent); text-decoration: none; line-height: 1.35; }
+.lib-src svg { width: 14px; height: 14px; flex: none; margin-top: 1px; }
+.lib-adapt { font-size: 12px; color: var(--faint); line-height: 1.35; }
+.lib-btns { display: flex; gap: 8px; }
+.lib-btns .btn { flex: 1; }

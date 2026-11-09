@@ -6,6 +6,7 @@ import { startWorkout } from '../core/workout.js';
 import { installProgram } from '../core/seed.js';
 import { pickExercise } from '../components/exercise-picker.js';
 import { navigate } from '../router.js';
+import { librarySection } from '../components/library.js';
 
 export function render(root, params = {}) {
   loadCss('css/views/templates.css');
@@ -152,6 +153,8 @@ function renderList(root) {
   if (!programs.length && loose.length) {
     out.push(h('button', { class: 'btn block', onclick: async () => { await installProgram(); navigate('#/programs', { replace: true }); } }, 'Поставить рекомендованную программу'));
   }
+
+  out.push(...librarySection());
 
   root.replaceChildren(...out);
 }
