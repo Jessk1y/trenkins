@@ -1,0 +1,15 @@
+{
+  "name": "trenkins-api",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev --port 8787",
+    "deploy": "wrangler deploy",
+    "db:local": "wrangler d1 execute trenkins --local --file=schema.sql",
+    "db:remote": "wrangler d1 execute trenkins --remote --file=schema.sql",
+    "vapid": "node tools/vapid.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "4.86.0"
+  }
+}

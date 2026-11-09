@@ -3,10 +3,12 @@ import { h, icon, sheet, toast, confirmSheet, promptSheet, topbar, loadCss, down
 import { store } from '../core/store.js';
 import { uid, fmtNum, parseNum, fmtDate, fmtTime } from '../core/util.js';
 import { editExercise } from '../components/exercise-picker.js';
+import { accountBlock } from '../components/account.js';
 
 const APP_VERSION = '1.0';
 const WEEK = 7 * 24 * 3600 * 1000;
 
+const loggedIn = () => !!(() => { try { return JSON.parse(localStorage.getItem('trenkins.auth')); } catch { return null; } })();
 const clamp = (n, a, b) => Math.min(b, Math.max(a, n));
 const sortPlates = (arr) => [...new Set(arr)].sort((a, b) => b - a);
 
@@ -203,6 +205,7 @@ export function render(root) {
   }
 
   // ---------- Сборка ----------
+  let acc = null;
   function build() {
     const s = store.settings();
     const last = s.lastBackupAt;
@@ -217,6 +220,9 @@ export function render(root) {
 
     return [
       topbar({ title: 'Настройки', back: '#/' }),
+
+      section('Аккаунт'),
+      (acc?.destroy?.(), acc = accountBlock()),
 
       section('Оформление'),
       themeBlock(),
@@ -263,8 +269,8 @@ export function render(root) {
 
       section('Данные'),
       stale ? h('div', { class: 'st-banner' }, last
-        ? `Последний бэкап был ${days} дн. назад. Сохрани новый — данные хранятся только в этом телефоне.`
-        : 'Бэкапа ещё нет. Данные хранятся только в этом телефоне — сохрани файл.') : null,
+        ? `Последний бэкап был ${days} дн. назад. Сохрани новый${loggedIn() ? '.' : ' — данные хранятся только в этом телефоне.'}`
+        : `Бэкапа ещё нет.${loggedIn() ? '' : ' Данные хранятся только в этом телефоне — сохрани файл.'}`) : null,
       h('div', { class: 'list' },
         h('button', { class: 'row st-btn', onclick: backup }, icon('download'), h('div', { class: 'grow' }, 'Сохранить бэкап',
           h('div', { class: 'meta' }, last ? `Последний: ${fmtDate(last, { year: true })}, ${fmtTime(last)}` : 'Ещё не сохранялся'))),
@@ -284,5 +290,5 @@ export function render(root) {
 
   draw();
   const off = store.on((kind) => { if (kind === '*') draw(); });
-  return () => { alive = false; off(); };
+  return () => { alive = false; off(); acc?.destroy?.(); };
 }

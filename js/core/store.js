@@ -42,7 +42,7 @@ const catalog = new Map(CATALOG.map((e) => [e.id, { ...e, builtin: true }]));
 const listeners = new Set();
 let settingsCache = clone(DEFAULT_SETTINGS);
 
-function emit(kind, obj) { for (const fn of listeners) { try { fn(kind, obj); } catch (e) { console.error(e); } } }
+function emit(kind, obj, meta = {}) { for (const fn of listeners) { try { fn(kind, obj, meta); } catch (e) { console.error(e); } } }
 
 export const store = {
   async init() {
@@ -154,6 +154,38 @@ export const store = {
     if (!last) return tpls[0];
     const i = tpls.findIndex((t) => t.id === last.templateId);
     return tpls[(i + 1) % tpls.length];
+  },
+
+  // ---------- Синхронизация ----------
+  /** запись как есть, включая удалённые (для отправки на сервер) */
+  raw(kind, id) { return state[kind]?.get(id) || null; },
+  /** все записи всех хранилищ, включая удалённые: [{store, id, data}] */
+  allRaw() { return STORES.flatMap((s) => [...state[s].values()].map((o) => ({ store: s, id: o.id, data: o }))); },
+  /** Применить записи с сервера: побеждает более свежий updatedAt. Возвращает число изменённых. */
+  async applyRemote(changes) {
+    const byStore = new Map();
+    for (const c of changes) {
+      if (!state[c.store] || !c.data) continue;
+      const cur = state[c.store].get(c.id);
+      if (cur && (cur.updatedAt || 0) >= (c.data.updatedAt || 0)) continue;
+      state[c.store].set(c.id, c.data);
+      if (!byStore.has(c.store)) byStore.set(c.store, []);
+      byStore.get(c.store).push(c.data);
+    }
+    for (const [s, list] of byStore) await db.putMany(s, list);
+    const n = [...byStore.values()].reduce((a, l) => a + l.length, 0);
+    if (n) {
+      const saved = state.settings.get('main');
+      settingsCache = { ...clone(DEFAULT_SETTINGS), ...(saved || {}) };
+      emit('*', null, { remote: true });
+    }
+    return n;
+  },
+  /** стереть все локальные данные (при входе в другой аккаунт) */
+  async wipeLocal() {
+    for (const s of STORES) { await db.clear(s); state[s].clear(); }
+    settingsCache = clone(DEFAULT_SETTINGS);
+    emit('*', null, { remote: true });
   },
 
   // ---------- Экспорт / импорт ----------

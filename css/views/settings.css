@@ -33,3 +33,13 @@
 
 .st-version { text-align: center; color: var(--faint); font-size: 13px; padding: 4px 0 0; }
 .st-two { display: grid; grid-template-columns: 1fr 110px; gap: 10px; }
+
+/* Аккаунт */
+.acc { display: contents; }
+.acc-card { display: flex; flex-direction: column; gap: 8px; }
+.acc-title { font-weight: 800; font-size: 17px; }
+.acc-btns { display: flex; gap: 8px; margin-top: 4px; }
+.acc-btns .btn { flex: 1; }
+.acc-ava { width: 36px; height: 36px; border-radius: 50%; background: var(--accent); color: var(--accent-fg); display: grid; place-items: center; font-weight: 800; flex: none; }
+.acc-err { color: var(--danger); }
+.acc-form { display: flex; flex-direction: column; gap: 12px; }

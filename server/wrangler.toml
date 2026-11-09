@@ -1,0 +1,24 @@
+name = "trenkins-api"
+main = "src/index.js"
+compatibility_date = "2026-04-01"
+
+# Сайт, которому разрешено ходить в API (CORS). Локальная разработка — localhost:5180.
+[vars]
+ALLOWED_ORIGINS = "https://jessk1y.github.io,http://localhost:5180,http://127.0.0.1:5180"
+VAPID_SUBJECT = "https://jessk1y.github.io/trenkins/"
+
+# Секреты (wrangler secret put …): INVITE_CODE, VAPID_PUBLIC, VAPID_PRIVATE_JWK
+# Для локального запуска они лежат в .dev.vars (не коммитится).
+
+[[d1_databases]]
+binding = "DB"
+database_name = "trenkins"
+database_id = "ea7f1b16-426e-481c-80af-cd2ae146c03b"
+
+[[durable_objects.bindings]]
+name = "REST_TIMER"
+class_name = "RestTimer"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["RestTimer"]

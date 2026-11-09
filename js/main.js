@@ -3,6 +3,7 @@ import { store } from './core/store.js';
 import { h, icon } from './core/ui.js';
 import { route, onRouteTab } from './router.js';
 import { fmtDuration } from './core/util.js';
+import { initSync } from './core/sync.js';
 
 const TABS = [
   { id: 'today', href: '#/', label: 'Сегодня', icon: 'today' },
@@ -52,6 +53,7 @@ async function boot() {
   matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', applyTheme);
   store.on((kind) => { if (kind === 'settings' || kind === '*') { applyTheme(); updateLiveBar(); } });
   buildTabbar();
+  initSync();
   window.addEventListener('hashchange', route);
   await route();
 
