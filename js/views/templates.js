@@ -85,7 +85,7 @@ async function setActive(p) {
 function dayRow(t, i, extra) {
   return h('div', { class: 'row' },
     i !== undefined ? h('div', { class: 'num-badge' }, String(i + 1)) : null,
-    h('a', { class: 'grow link', href: `#/template/${t.id}` },
+    h('a', { class: 'grow link', href: `#/day/${t.id}` },
       h('div', { class: 'title ellipsis' }, t.name),
       h('div', { class: 'meta ellipsis' }, tplSummary(t))),
     extra || null,

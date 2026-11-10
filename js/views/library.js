@@ -1,4 +1,4 @@
-// База тренировок: #/library (все группы), #/library/group/<kind>, #/library/<templateId> (тренировка целиком).
+// База тренировок: #/day/<id> (свой день программы), #/library (все группы), #/library/group/<kind>, #/library/<templateId> (тренировка целиком).
 import { h, icon, toast, topbar, empty, loadCss } from '../core/ui.js';
 import { store } from '../core/store.js';
 import { plural, fmtSec } from '../core/util.js';
@@ -6,11 +6,14 @@ import { MUSCLES, EQUIPMENT } from '../data/exercises.js';
 import { LIBRARY } from '../data/library.js';
 import { loadMedia, exercisePics, openExerciseInfo } from '../components/exercise-info.js';
 import { startLibraryWorkout, addLibraryTemplate, addLibraryGroup } from '../components/library.js';
+import { startWorkout } from '../core/workout.js';
+import { navigate } from '../router.js';
 
 const KIND_ICON = { fullbody: 'Ф', chest: 'Г', back: 'С', legs: 'Н', shoulders: 'П', arms: 'Р', core: 'К' };
 
 export async function render(root, params = {}) {
   loadCss('css/views/library.css');
+  if (params.dayId) return renderDay(root, params.dayId);
   if (params.templateId) return renderWorkout(root, params.templateId);
   return renderList(root, params.group || null);
 }
@@ -66,7 +69,7 @@ function renderList(root, group) {
   root.querySelector('.lb-chips .on')?.scrollIntoView?.({ inline: 'center', block: 'nearest' });
 }
 
-// ---------- тренировка целиком ----------
+// ---------- тренировка из базы: #/library/<id> ----------
 async function renderWorkout(root, id) {
   const found = findTpl(id);
   if (!found) {
@@ -74,6 +77,45 @@ async function renderWorkout(root, id) {
     return;
   }
   const { g, t } = found;
+  await renderPlan(root, t, {
+    top: topbar({ title: cap(t.name.replace(/^[^—]+—\s*/, '')), sub: g.name, back: `#/library/group/${g.kind}` }),
+    tail: h('div', { class: 'card lb-source' },
+      h('div', { class: 'lb-k' }, 'Источник'),
+      h('a', { href: t.source.url, target: '_blank', rel: 'noopener' }, `${t.source.author} — ${t.source.title}`),
+      t.source.adapted ? h('div', { class: 'muted small' }, 'Адаптация: ', t.source.adapted) : null),
+    bar: [
+      h('button', { class: 'btn', onclick: async () => { await addLibraryTemplate(t); toast('Добавлено в «Шаблоны без программы»'); } }, icon('plus'), 'В шаблоны'),
+      h('button', { class: 'btn primary', onclick: () => startLibraryWorkout(t) }, icon('play'), 'Начать')],
+  });
+}
+
+// ---------- свой день программы / шаблон: #/day/<id> ----------
+async function renderDay(root, id) {
+  const t = store.get('templates', id);
+  if (!t) {
+    root.replaceChildren(topbar({ title: 'Тренировка', back: '#/programs' }), empty('Тренировка не найдена', null, h('a', { class: 'btn primary', href: '#/programs' }, 'К программам')));
+    return;
+  }
+  const p = t.programId ? store.get('programs', t.programId) : null;
+  // строку «Источник: … url», которую дописывает библиотека, показываем отдельной карточкой
+  const m = (t.note || '').match(/Источник: ([^\n]+?)\. (https?:\/\/\S+)\s*$/);
+  const note = m ? t.note.slice(0, m.index).trim() : t.note;
+  const busy = !!store.activeWorkout();
+  await renderPlan(root, { ...t, note }, {
+    top: topbar({ title: t.name, sub: p ? p.name : 'Шаблон', back: '#/programs',
+      right: h('a', { class: 'icon-btn', href: `#/template/${t.id}`, 'aria-label': 'Изменить тренировку' }, icon('edit')) }),
+    tail: m ? h('div', { class: 'card lb-source' }, h('div', { class: 'lb-k' }, 'Источник'), h('a', { href: m[2], target: '_blank', rel: 'noopener' }, m[1])) : null,
+    bar: [
+      h('a', { class: 'btn', href: `#/template/${t.id}` }, icon('edit'), 'Изменить'),
+      h('button', { class: 'btn primary', onclick: async () => {
+        if (!busy) await startWorkout(t);
+        navigate('#/workout');
+      } }, icon('play'), busy ? 'К тренировке' : 'Начать')],
+  });
+}
+
+/** Общий вид тренировки: сводка, упражнения с картинками, источник, нижняя панель */
+async function renderPlan(root, t, { top, tail, bar }) {
   const media = await loadMedia();
 
   const card = (it, i) => {
@@ -91,7 +133,7 @@ async function renderWorkout(root, id) {
             h('div', { class: 'meta' }, [MUSCLES[ex.muscle], EQUIPMENT[ex.equipment]].filter(Boolean).join(' · '))),
           ss),
         h('div', { class: 'lb-sets' },
-          h('div', null, h('span', { class: 'lb-k' }, 'Рабочие'), h('b', null, workStr(it))),
+          h('div', null, h('span', { class: 'lb-k' }, 'Рабочие'), h('b', null, workStr(it) || '—')),
           w.length ? h('div', null, h('span', { class: 'lb-k' }, 'Разминка'), h('span', null, w.map(reps).join(', '))) : null,
           it.rest ? h('div', null, h('span', { class: 'lb-k' }, 'Отдых'), h('span', null, fmtSec(it.rest))) : null),
         it.note ? h('div', { class: 'lb-note' }, it.note) : null,
@@ -99,20 +141,15 @@ async function renderWorkout(root, id) {
   };
 
   root.replaceChildren(
-    topbar({ title: cap(t.name.replace(/^[^—]+—\s*/, '')), sub: g.name, back: `#/library/group/${g.kind}` }),
+    top,
     h('div', { class: 'lb-stats' },
       h('div', null, h('b', null, String(t.items.length)), h('span', null, plural(t.items.length, 'упражнение', 'упражнения', 'упражнений'))),
       h('div', null, h('b', null, String(workSets(t))), h('span', null, 'рабочих подходов')),
       h('div', null, h('b', null, `~${estMinutes(t)}`), h('span', null, 'минут'))),
-    t.note ? h('div', { class: 'lb-desc' }, t.note) : null,
-    ...t.items.map(card),
-    h('div', { class: 'card lb-source' },
-      h('div', { class: 'lb-k' }, 'Источник'),
-      h('a', { href: t.source.url, target: '_blank', rel: 'noopener' }, `${t.source.author} — ${t.source.title}`),
-      t.source.adapted ? h('div', { class: 'muted small' }, 'Адаптация: ', t.source.adapted) : null),
-    h('div', { class: 'lb-bar' },
-      h('button', { class: 'btn', onclick: async () => { await addLibraryTemplate(t); toast('Добавлено в «Шаблоны без программы»'); } }, icon('plus'), 'В шаблоны'),
-      h('button', { class: 'btn primary', onclick: () => startLibraryWorkout(t) }, icon('play'), 'Начать')),
+    ...(t.note ? [h('div', { class: 'lb-desc' }, t.note)] : []),
+    ...(t.items.length ? t.items.map(card) : [empty('Упражнений пока нет', 'Добавь их в редакторе тренировки.')]),
+    ...(tail ? [tail] : []),
+    h('div', { class: 'lb-bar' }, ...bar),
   );
 }
 

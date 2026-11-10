@@ -62,7 +62,8 @@ export function render(root) {
       h('div', { class: 's' }, program ? `Программа «${program.name}»` : 'Следующая'),
       h('div', { class: 'n' }, next.name),
       h('div', { class: 'ex-list' }, next.items.map((it) => store.exerciseName(it.exerciseId)).join(' · ')),
-      h('button', { class: 'btn block lg', onclick: () => start(next) }, 'Начать тренировку'));
+      h('button', { class: 'btn block lg', onclick: () => start(next) }, 'Начать тренировку'),
+      h('a', { class: 'btn block hero-look', href: `#/day/${next.id}` }, 'Посмотреть упражнения'));
   } else {
     hero = h('div', { class: 'hero' },
       h('div', { class: 's' }, 'Программы пока нет'),

@@ -10,6 +10,7 @@ const routes = [
   { re: /^\/programs$/, view: () => import('./views/templates.js'), tab: 'programs' },
   { re: /^\/program\/([\w-]+)$/, view: () => import('./views/templates.js'), tab: 'programs', params: ['programId'] },
   { re: /^\/template\/([\w-]+)$/, view: () => import('./views/templates.js'), tab: 'programs', params: ['templateId'] },
+  { re: /^\/day\/([\w-]+)$/, view: () => import('./views/library.js'), tab: 'programs', params: ['dayId'] },
   { re: /^\/library$/, view: () => import('./views/library.js'), tab: 'programs' },
   { re: /^\/library\/group\/([\w-]+)$/, view: () => import('./views/library.js'), tab: 'programs', params: ['group'] },
   { re: /^\/library\/([\w-]+)$/, view: () => import('./views/library.js'), tab: 'programs', params: ['templateId'] },
