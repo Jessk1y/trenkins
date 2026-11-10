@@ -63,7 +63,21 @@ async function boot() {
     navigator.serviceWorker.getRegistrations().then((rs) => rs.forEach((r) => r.unregister()));
     caches?.keys().then((ks) => ks.forEach((k) => caches.delete(k)));
   } else if ('serviceWorker' in navigator && location.protocol !== 'file:') {
-    navigator.serviceWorker.register('sw.js').catch((e) => console.warn('SW', e));
+    // новый сервис-воркер взял управление → перезагрузиться, чтобы сразу показать новую версию
+    // (не во время тренировки — там просто подхватится при следующем открытии)
+    const hadController = !!navigator.serviceWorker.controller;
+    let reloaded = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (!hadController || reloaded || location.hash.startsWith('#/workout')) return;
+      reloaded = true;
+      location.reload();
+    });
+    navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' })
+      .then((reg) => {
+        // проверять обновление при каждом возвращении в приложение (на iPhone оно часто не перезапускается)
+        document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') reg.update().catch(() => {}); });
+      })
+      .catch((e) => console.warn('SW', e));
   }
 }
 

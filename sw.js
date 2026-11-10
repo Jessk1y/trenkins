@@ -1,7 +1,8 @@
 // Сервис-воркер: приложение работает без интернета.
-// Стратегия: stale-while-revalidate для своих файлов — мгновенно из кэша, обновление в фоне.
+// Код и стили — «сначала сеть» (обновления видны сразу, кэш — запасной вариант офлайн, ждём сеть не дольше 3 с).
+// Картинки упражнений — «сначала кэш» (не меняются). Запросы в сеть идут мимо HTTP-кэша браузера.
 // При изменении состава файлов поднимай VERSION.
-const VERSION = 'trenkins-v10';
+const VERSION = 'trenkins-v11';
 const CORE = [
   './', 'index.html', 'manifest.webmanifest', 'css/app.css',
   'css/views/history.css', 'css/views/progress.css', 'css/views/settings.css', 'css/views/templates.css', 'css/views/library.css',
@@ -14,22 +15,39 @@ const CORE = [
 ];
 
 self.addEventListener('install', (e) => {
-  e.waitUntil(caches.open(VERSION).then((c) => Promise.all(CORE.map((u) => c.add(u).catch(() => null)))).then(() => self.skipWaiting()));
+  e.waitUntil(caches.open(VERSION)
+    .then((c) => Promise.all(CORE.map((u) => fetch(new Request(u, { cache: 'reload' })).then((r) => r.ok && c.put(u, r)).catch(() => null))))
+    .then(() => self.skipWaiting()));
 });
 
 self.addEventListener('activate', (e) => {
   e.waitUntil(caches.keys().then((keys) => Promise.all(keys.filter((k) => k !== VERSION).map((k) => caches.delete(k)))).then(() => self.clients.claim()));
 });
 
+const fromNet = (req) => fetch(req, { cache: 'no-cache' });
+
 self.addEventListener('fetch', (e) => {
   const req = e.request;
-  if (req.method !== 'GET' || new URL(req.url).origin !== location.origin) return; // API и чужие сайты — мимо кэша
+  const url = new URL(req.url);
+  if (req.method !== 'GET' || url.origin !== location.origin) return; // API и чужие сайты — мимо
   e.respondWith(caches.open(VERSION).then(async (cache) => {
     const cached = await cache.match(req, { ignoreSearch: true });
-    const net = fetch(req).then((res) => { if (res.ok) cache.put(req, res.clone()); return res; }).catch(() => null);
-    if (cached) { e.waitUntil(net); return cached; }
-    const res = await net;
-    if (res) return res;
+    // картинки: из кэша, а нет — из сети и запомнить
+    if (url.pathname.includes('/img/')) {
+      if (cached) return cached;
+      const res = await fromNet(req).catch(() => null);
+      if (res?.ok) cache.put(req, res.clone());
+      return res || Response.error();
+    }
+    // остальное: сеть (до 3 с, если есть кэш), иначе кэш
+    const net = fromNet(req).then((res) => { if (res.ok) cache.put(req, res.clone()); return res; });
+    const timeout = cached ? new Promise((r) => setTimeout(() => r(null), 3000)) : null;
+    try {
+      const res = await (timeout ? Promise.race([net, timeout]) : net);
+      if (res) return res;
+      e.waitUntil(net.catch(() => null)); // сеть медленная — отдаём кэш, но обновим его
+    } catch { /* офлайн */ }
+    if (cached) return cached;
     if (req.mode === 'navigate') return (await cache.match('index.html')) || Response.error();
     return Response.error();
   }));
