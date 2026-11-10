@@ -6,6 +6,7 @@ import { buildItem, newSet, placeholders, finishWorkout, discardWorkout, summari
 import { pickExercise } from '../components/exercise-picker.js';
 import { openPlateCalc } from '../components/plates.js';
 import { defaultStep } from '../core/progression.js';
+import { openExerciseInfo } from '../components/exercise-info.js';
 import { navigate } from '../router.js';
 
 const weightInputs = new WeakMap(); // подход → поле веса (для протягивания веса на следующие подходы)
@@ -197,6 +198,7 @@ export function render(root) {
         const v = await promptSheet({ title: 'Заметка', value: item.note || ex.note || '', multiline: true, placeholder: 'Сиденье на 4, хват на кольцах…' });
         if (v !== null) { item.note = v.trim(); saveNow(); rerenderCard(item); }
       } },
+      { label: 'Как выполнять', icon: 'note', onClick: () => openExerciseInfo(item.exerciseId) },
       { label: `Отдых: ${fmtSec(item.rest)}`, icon: 'timer', onClick: () => restPicker(item) },
       next ? { label: item.superset && next.superset === item.superset ? 'Убрать суперсет со следующим' : 'Суперсет со следующим', icon: 'link', onClick: () => toggleSuperset(i) } : null,
       { label: 'Заменить упражнение', icon: 'swap', onClick: async () => {

@@ -1,0 +1,50 @@
+/* База тренировок */
+.lb-intro { margin: -4px 4px 0; line-height: 1.4; }
+.lb-chips { margin: 0 calc(-1 * var(--gutter)); padding: 0 var(--gutter); }
+.lb-chips a { text-decoration: none; }
+.lb-group { display: flex; align-items: center; justify-content: flex-start; gap: 10px; margin-top: 6px; }
+.lb-group .lib-ico, .lib-ico { width: 30px; height: 30px; border-radius: 9px; background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; font-weight: 800; flex: none; font-size: 14px; }
+.lb-row { color: inherit; text-decoration: none; }
+
+.lb-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.lb-stats > div { background: var(--surface); border-radius: var(--r-lg); padding: 10px 12px; display: flex; flex-direction: column; }
+.lb-stats b { font-size: 22px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.lb-stats span { font-size: 12px; color: var(--muted); }
+.lb-desc { color: var(--muted); font-size: 14px; line-height: 1.45; margin: 0 4px; }
+
+.lb-ex { background: var(--surface); border-radius: var(--r-lg); overflow: hidden; }
+.lb-ex.ss { box-shadow: inset 3px 0 0 var(--superset); }
+.lb-ex-body { padding: 12px; display: flex; flex-direction: column; gap: 10px; }
+.lb-ex-head { display: flex; align-items: flex-start; gap: 10px; }
+.lb-ex-head .num-badge { width: 28px; height: 28px; border-radius: 8px; background: var(--surface-2); color: var(--muted); display: grid; place-items: center; font-weight: 800; flex: none; font-size: 14px; }
+.lb-ex-name { font-weight: 800; font-size: 17px; line-height: 1.25; }
+.lb-ss { background: color-mix(in srgb, var(--superset) 18%, transparent); color: var(--superset); flex: none; }
+.lb-sets { display: flex; flex-direction: column; gap: 4px; font-size: 15px; }
+.lb-sets > div { display: flex; gap: 10px; align-items: baseline; }
+.lb-k { color: var(--faint); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; min-width: 78px; }
+.lb-sets b { font-size: 17px; font-variant-numeric: tabular-nums; }
+.lb-note { font-size: 13px; color: var(--muted); line-height: 1.4; background: var(--surface-2); border-radius: 10px; padding: 8px 10px; }
+.lb-how { align-self: flex-start; }
+.lb-how svg { width: 16px; height: 16px; }
+.lb-source { display: flex; flex-direction: column; gap: 6px; }
+.lb-source a { color: var(--accent); text-decoration: none; font-size: 14px; line-height: 1.35; }
+.lb-bar {
+  position: sticky; bottom: calc(var(--tabbar-h) + var(--safe-bottom) + 10px); z-index: 5;
+  display: flex; gap: 8px; padding: 8px; border-radius: var(--r-lg);
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); box-shadow: var(--shadow);
+}
+.lb-bar .btn { flex: 1; }
+body.has-live .lb-bar { bottom: calc(var(--tabbar-h) + var(--safe-bottom) + 64px); }
+
+/* Картинки упражнения */
+.ex-pics { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: #fff; cursor: zoom-in; }
+.ex-pics:has(figure:only-child) { grid-template-columns: 1fr; }
+.ex-pics figure { margin: 0; position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: #fff; }
+.ex-pics img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.ex-pics figcaption { position: absolute; left: 6px; bottom: 6px; font-size: 11px; font-weight: 700; color: #333; background: rgba(255,255,255,.85); padding: 2px 6px; border-radius: 6px; }
+.exi { display: flex; flex-direction: column; gap: 12px; }
+.exi .ex-pics { border-radius: var(--r-lg); overflow: hidden; cursor: default; }
+.exi-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.exi-steps { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 1.45; }
+.exi-src { font-size: 11px; color: var(--faint); }

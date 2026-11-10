@@ -1,15 +1,15 @@
 // Сервис-воркер: приложение работает без интернета.
 // Стратегия: stale-while-revalidate для своих файлов — мгновенно из кэша, обновление в фоне.
 // При изменении состава файлов поднимай VERSION.
-const VERSION = 'trenkins-v7';
+const VERSION = 'trenkins-v9';
 const CORE = [
   './', 'index.html', 'manifest.webmanifest', 'css/app.css',
-  'css/views/history.css', 'css/views/progress.css', 'css/views/settings.css', 'css/views/templates.css',
+  'css/views/history.css', 'css/views/progress.css', 'css/views/settings.css', 'css/views/templates.css', 'css/views/library.css',
   'js/main.js', 'js/router.js',
   'js/core/db.js', 'js/core/store.js', 'js/core/ui.js', 'js/core/util.js', 'js/core/workout.js', 'js/core/progression.js', 'js/core/seed.js', 'js/core/api.js', 'js/core/sync.js',
-  'js/components/exercise-picker.js', 'js/components/plates.js', 'js/components/chart.js', 'js/components/library.js', 'js/components/account.js',
+  'js/components/exercise-picker.js', 'js/components/plates.js', 'js/components/chart.js', 'js/components/library.js', 'js/components/account.js', 'js/components/exercise-info.js',
   'js/data/exercises.js', 'js/data/program.js', 'js/data/library.js',
-  'js/views/today.js', 'js/views/workout.js', 'js/views/templates.js', 'js/views/history.js', 'js/views/progress.js', 'js/views/settings.js',
+  'js/views/today.js', 'js/views/workout.js', 'js/views/templates.js', 'js/views/history.js', 'js/views/progress.js', 'js/views/settings.js', 'js/views/library.js',
   'icons/icon.svg', 'icons/apple-touch-icon.png', 'icons/icon-192.png', 'icons/icon-512.png',
 ];
 
